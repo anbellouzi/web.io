@@ -9,3 +9,5 @@
 
 ## TODO:
   1. Get string/object from Voice recognition
+  2. Create components: body, div, img, label, button,
+  3. Use bootstrap for css to className
