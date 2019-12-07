@@ -45,13 +45,31 @@ recognition.onresult = function(event) {
   // We then return the transcript property of the SpeechRecognitionAlternative object
 
   var last = event.results.length - 1;
-  var color = event.results[last][0].transcript;
+  var speach_Command = event.results[last][0].transcript;
+  var command = ""
+  for(var i=0; i<speach_Command; i++) {
+      while((speach_Command[i] != " ") {
+        command += speach_Command[i]
+      }
+  }
+  alert(command)
 
-  diagnostic.textContent = 'Result received: ' + color + '.';
 
-  if (color == "add")
 
-  bg.style.backgroundColor = color;
+
+  diagnostic.textContent = 'Result received: ' + speach_Command + '.';
+
+  if (speach_Command == "container") {
+    var div = document.createElement('div');
+    div.innerHTML = "my <b>new</b> skill - <large>DOM maniuplation!</large>";
+    // set style
+    div.style.color = 'red';
+    // better to use CSS though - just set class
+    div.setAttribute('class', 'myclass'); // and make sure myclass has some styles in css
+    document.body.appendChild(div);
+  }
+
+  bg.style.backgroundColor = speach_Command;
   console.log('Confidence: ' + event.results[0][0].confidence);
 
 }
@@ -69,9 +87,9 @@ recognition.onerror = function(event) {
 }
 
 navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(function(stream) {
-        console.log('You let me use your mic!')
-      })
-      .catch(function(err) {
-        console.log('No mic for you!')
-      });
+.then(function(stream) {
+  console.log('You let me use your mic!')
+})
+.catch(function(err) {
+  console.log('No mic for you!')
+});
