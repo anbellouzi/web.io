@@ -13,7 +13,7 @@ body {
   background: #1e2440;
   color: #f2efe2;
   font-size: 16px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 .container {
   position: relative;
