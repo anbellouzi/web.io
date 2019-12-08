@@ -16,22 +16,31 @@ const dictate = () => {
   recognition.start();
   recognition.onresult = (event) => {
     const speechToText = event.results[0][0].transcript;
-    
+
     paragraph.textContent = speechToText;
 
     if (event.results[0].isFinal) {
 
-      if (speechToText.includes('what is the time')) {
+      if (speechToText.includes('time')) {
           speak(getTime);
       };
-      
-      if (speechToText.includes('what is today\'s date')) {
+
+      if (speechToText.includes('date')) {
           speak(getDate);
       };
-      
-      if (speechToText.includes('what is the weather in')) {
+
+      if (speechToText.includes('weather')) {
           getTheWeather(speechToText);
       };
+
+      if (speechToText.includes('create box')) {
+          create_Image(speechToText)
+      };
+
+      if (speechToText.includes('add text')) {
+          add_text(speechToText)
+      };
+
     }
   }
 }
@@ -52,7 +61,7 @@ const getDate = () => {
 };
 
 const getTheWeather = (speech) => {
-  fetch(`http://api.openweathermap.org/data/2.5/weather?q=${speech.split(' ')[5]}&appid=58b6f7c78582bffab3936dac99c31b25&units=metric`) 
+  fetch(`http://api.openweathermap.org/data/2.5/weather?q=${speech.split(' ')[5]}&appid=58b6f7c78582bffab3936dac99c31b25&units=metric`)
   .then(function(response){
     return response.json();
   })
@@ -66,3 +75,28 @@ const getTheWeather = (speech) => {
     synth.speak(utterThis);
   });
 };
+
+
+var editor = grapesjs.init({
+     container : '#gjs',
+     components: '<div class="txt-red">Hello world!</div>',
+     style: '.txt-red{color: red}',
+ });
+
+
+
+function create_Image(text) {
+
+  editor.addComponents(`<div>
+    <img src="https://path/image" />
+    <span title="foo">${text}</span>
+  </div>`);
+
+}
+
+function add_text(text) {
+  // First we apply the new text in the selection
+          editor.getSelected().set('content', text);
+         // To update the HTML DOM we need to use render function.
+          editorRTE.DomComponents.render();
+}
