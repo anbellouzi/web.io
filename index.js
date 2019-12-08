@@ -17,8 +17,8 @@ const dictate = () => {
   recognition.onresult = (event) => {
     const speechToText = event.results[0][0].transcript;
 
-    paragraph.textContent = speechToText;
-
+    // paragraph.textContent = speechToText;
+    document.getElementById('voice_message').innerHTML = speechToText
     if (event.results[0].isFinal) {
 
       if (speechToText.includes('time')) {

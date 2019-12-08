@@ -15,6 +15,8 @@ body {
   font-size: 16px;
   font-family: "Courier New", Courier, monospace;
 }
+
+/* style for mic */
 .container {
   position: absolute;
   width: 84%;
@@ -22,16 +24,6 @@ body {
   margin: auto;
   z-index: 1;
   text-align: center;
-  /* border: 1px solid #f2efe2;
-  width: 40vw;
-  max-width: 60vw;
-  margin: 0 auto;
-  border-radius: 0.1rem;
-  background: #f2efe2;
-  padding: 0.2rem 1rem;
-  color: #1e2440;
-  overflow: scroll;
-  margin-top: 10vh; */
 }
 .text-box {
   max-height: 70vh;
@@ -41,20 +33,9 @@ body {
   outline: none;
 }
 .text-box p {
-  border-bottom: 1px dotted black;
   margin: 0px !important;
 }
 .fa {
-  /*
-
-
-
-
-  float: right; */
-
-  /*
-
-   */
   width: 2rem;
   height: 2rem;
   background: #1e2440;
@@ -67,16 +48,22 @@ body {
   margin-top: 1rem;
   border-radius: 50%;
 }
+/* end style for mic */
 
 /* Let's highlight canvas boundaries */
 #gjs {
-  border: 3px solid #444;
+  /* border: 3px solid #444; */
   z-index: 2;
 }
 
 /* Reset some default styling */
 .gjs-cv-canvas {
   top: 0;
-  width: 100%;
+  width: 85%;
   height: 100%;
+  background-color: red;
+}
+
+#voice_message {
+  color: black;
 }
