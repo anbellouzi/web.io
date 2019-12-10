@@ -78,18 +78,23 @@ const dictate = () => {
          createText(speechToText)
       }
       else if (speechToText.includes('image') || speechToText.includes('img')) {
-         createImage(speechToText)
+         var imageEl = createImage(speechToText)
+         canvas.push(imageEl)
       }
       else if (speechToText.includes('box') || speechToText.includes('div')) {
         var div = createDiv(speechToText)
-        canvas.append(div)
+        canvas.push(div)
       }
       if (speechToText.includes('image')) {
         createImage(speechToText)
       }
     }
-
   }
+
+  console.log(canvas)
+
+
+
   recognition.onstart = function() {
     voiceMessage.innerHTML = 'Voice recognition activated. Try speaking into the microphone.'
     document.getElementById("progress").style.display = "block";
@@ -126,14 +131,15 @@ function createText(text) {
 // Append components directly to the canvas
 function createImage(text) {
   speak('Creating an image')
-  editor.addComponents(`<img src="https://association-amici.org/wp-content/themes/oria/images/placeholder.png" alt="">`);
+  var image = editor.addComponents(`<img src="https://association-amici.org/wp-content/themes/oria/images/placeholder.png" alt="">`);
+  return image
 }
 
 // Append components directly to the canvas
 function createDiv(text) {
   speak('Creating a div')
   var div = editor.addComponents(`<div>${text}</div>`);
-  console.log(div)
+  console.log(canvas)
   return div
 }
 
