@@ -81,3 +81,12 @@ body {
   border-radius: 50%;
 }
 /* end style for mic */
+.progress {
+    height: 50px;
+    text-align: center;
+}
+.progress > svg {
+    height: 100%;
+    display: block;
+    margin: auto;
+}

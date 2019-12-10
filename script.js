@@ -1,10 +1,19 @@
 var voiceMessage = document.getElementById('voice_message')
+var circle = new ProgressBar.Circle('#progress', {
+    color: '#FCB03C',
+    duration: 3000,
+    easing: 'easeInOut'
+});
 
 var editor = grapesjs.init({
   height: '100%',
   showOffsets: 1,
   noticeOnUnload: 0,
-  storageManager: { autoload: 0 },
+  storageManager: { autoload: 0, id: 'gjs-',             // Prefix identifier that will be used on parameters
+    type: 'local',          // Type of the storage
+    autosave: true,         // Store data automatically
+    autoload: true,         // Autoload stored data on init
+    stepsBeforeSave: 1, },
   container: '#gjs',
   fromElement: true,
 
@@ -18,6 +27,7 @@ var editor = grapesjs.init({
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const synth = window.speechSynthesis;
 const recognition = new SpeechRecognition();
+//recognition.continuous = false;
 
 const icon = document.querySelector('i.fa.fa-microphone')
 let paragraph = document.createElement('p');
@@ -36,25 +46,67 @@ const dictate = () => {
 
     voiceMessage.innerHTML = speechToText
 
-    if (speechToText.includes('create')) {
-      if (speechToText.includes('box')) {
-        createBox(speechToText)
+    if (speechToText.includes('create') || speechToText.includes('add')) {
+      // TODO: check for words after create
+      if (speechToText.includes('text') || speechToText.includes('paragraph')) {
+         createText(speechToText)
+      }
+      else if (speechToText.includes('image') || speechToText.includes('img')) {
+         createImage(speechToText)
+      }
+      else if (speechToText.includes('box') || speechToText.includes('div')) {
+        createDiv(speechToText)
       }
     }
 
   }
   recognition.onstart = function() {
     voiceMessage.innerHTML = 'Voice recognition activated. Try speaking into the microphone.'
+    document.getElementById("progress").style.display = "block";
+    document.getElementById("mic").style.display = "none";
+
+    circle.animate(10);
   }
   recognition.onspeechend = function() {
     voiceMessage.innerHTML = 'You were quiet for a while so voice recognition turned itself off.'
+    document.getElementById("mic").style.display = "block";
+    document.getElementById("progress").style.display = "None";
   }
 }
 
-function createBox(text) {
-    // Append components directly to the canvas
-  editor.addComponents(`<div>
-    <img src="https://path/image" />
-    <span title="foo">${text}</span>
-  </div>`);
+function includes(object, arr) {
+  arr.forEach(element => {
+    if (object == element) {
+      return true
+    }
+  });
+  return false
 }
+
+// Append components directly to the canvas
+function createText(text) {
+  speak('Creating a paragraph')
+  editor.addComponents(`<p>${text}</p>`);
+}
+
+// Append components directly to the canvas
+function createImage(text) {
+  speak('Creating an image')
+  editor.addComponents(`<img src="https://association-amici.org/wp-content/themes/oria/images/placeholder.png" alt="">`);
+}
+
+// Append components directly to the canvas
+function createDiv(text) {
+  speak('Creating a div')
+  editor.addComponents(`<div>${text}</div>`);
+}
+
+
+// speek a message to user
+function speak(message) {
+    speechSynthesis.speak(new SpeechSynthesisUtterance(message));
+}
+
+window.onload = function onLoad() {
+
+};

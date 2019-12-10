@@ -9,6 +9,7 @@
     <script src="https://static.filestackapi.com/v3/filestack-0.1.10.js"></script>
     <script src="https://unpkg.com/grapesjs"></script>
     <script src="dist/grapesjs-preset-webpage.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <style>
       body,
       html {
@@ -84,7 +85,8 @@
     <div class="container" >
       <div class="text-box" contenteditable="true"></div>
       <label id="voice_message">Say a command</label>
-      <i class="fa fa-microphone mic"></i>
+      <div class="progress" id="progress"></div>
+      <i class="fa fa-microphone mic" id="mic"></i>
 
     <style>
 
@@ -124,6 +126,7 @@
       </style>
     </div>
 
+    <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
