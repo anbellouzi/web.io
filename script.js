@@ -1,5 +1,26 @@
 var voiceMessage = document.getElementById('voice_message')
 
+// api ↓↓↓↓↓↓↓↓↓↓↓
+
+// var request = new XMLHttpRequest()
+
+// request.open('GET', 'https://', true)
+// request.onload = function() {
+//   var data = JSON.parse(this.response)
+
+//   if (request.status >= 200 && request.status < 400) {
+//     data.forEach(movie => {
+//       console.log(movie.title)
+//     })
+//   } else {
+//     console.log('error')
+//   }
+// }
+
+// request.send()
+
+// api ↑↑↑↑↑↑↑↑
+
 var editor = grapesjs.init({
   height: '100%',
   showOffsets: 1,
@@ -13,7 +34,6 @@ var editor = grapesjs.init({
     'gjs-preset-webpage': {}
   }
 });
-
 
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const synth = window.speechSynthesis;
@@ -40,6 +60,9 @@ const dictate = () => {
       if (speechToText.includes('box')) {
         createBox(speechToText)
       }
+      if (speechToText.includes('image')) {
+        createImage(speechToText)
+      }
     }
 
   }
@@ -49,12 +72,29 @@ const dictate = () => {
   recognition.onspeechend = function() {
     voiceMessage.innerHTML = 'You were quiet for a while so voice recognition turned itself off.'
   }
+
+  // recognition.continue()
+
 }
 
 function createBox(text) {
     // Append components directly to the canvas
   editor.addComponents(`<div>
-    <img src="https://path/image" />
     <span title="foo">${text}</span>
   </div>`);
 }
+
+function createDiv(text) {
+  // Append components directly to the canvas
+editor.addComponents(`<div>
+  <img src="https://path/image" />
+  <span title="foo">${text}</span>
+</div>`);
+}
+
+function createImage(text) {
+  // Append components directly to the canvas
+editor.addComponents(`<img src="https://path/image" />`);
+}
+// to do:
+// put functions in one file
