@@ -5,6 +5,29 @@ var circle = new ProgressBar.Circle('#progress', {
     easing: 'easeInOut'
 });
 
+// api ↓↓↓↓↓↓↓↓↓↓↓
+
+// var request = new XMLHttpRequest()
+
+// request.open('GET', 'https://', true)
+// request.onload = function() {
+//   var data = JSON.parse(this.response)
+
+//   if (request.status >= 200 && request.status < 400) {
+//     data.forEach(movie => {
+//       console.log(movie.title)
+//     })
+//   } else {
+//     console.log('error')
+//   }
+// }
+
+// request.send()
+
+// api ↑↑↑↑↑↑↑↑
+
+
+// web builder  code
 var editor = grapesjs.init({
   height: '100%',
   showOffsets: 1,
@@ -22,7 +45,7 @@ var editor = grapesjs.init({
     'gjs-preset-webpage': {}
   }
 });
-
+// end of web builder  code
 
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const synth = window.speechSynthesis;
@@ -38,6 +61,9 @@ const sound = document.querySelector('.sound');
 icon.addEventListener('click', () => {
   dictate();
 });
+
+
+var canvas = []
 
 const dictate = () => {
   recognition.start();
@@ -55,7 +81,11 @@ const dictate = () => {
          createImage(speechToText)
       }
       else if (speechToText.includes('box') || speechToText.includes('div')) {
-        createDiv(speechToText)
+        var div = createDiv(speechToText)
+        canvas.append(div)
+      }
+      if (speechToText.includes('image')) {
+        createImage(speechToText)
       }
     }
 
@@ -72,8 +102,12 @@ const dictate = () => {
     document.getElementById("mic").style.display = "block";
     document.getElementById("progress").style.display = "None";
   }
+
+  // recognition.continue()
+
 }
 
+// <<<<<<< HEAD
 function includes(object, arr) {
   arr.forEach(element => {
     if (object == element) {
@@ -98,7 +132,9 @@ function createImage(text) {
 // Append components directly to the canvas
 function createDiv(text) {
   speak('Creating a div')
-  editor.addComponents(`<div>${text}</div>`);
+  var div = editor.addComponents(`<div>${text}</div>`);
+  console.log(div)
+  return div
 }
 
 
@@ -110,3 +146,8 @@ function speak(message) {
 window.onload = function onLoad() {
 
 };
+
+
+// to do:
+// put functions in one file
+// >>>>>>> 0cdd415602f61078f86276c7decc19512eaac971
