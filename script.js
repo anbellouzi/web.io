@@ -144,7 +144,7 @@ function createDiv(text) {
 }
 
 
-// speek a message to user
+// speak a message to user
 function speak(message) {
     speechSynthesis.speak(new SpeechSynthesisUtterance(message));
 }
