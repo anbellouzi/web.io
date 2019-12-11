@@ -1,28 +1,63 @@
 var voiceMessage = document.getElementById('voice_message')
 var circle = new ProgressBar.Circle('#progress', {
-    color: '#FCB03C',
+    color: '#097054',
     duration: 3000,
     easing: 'easeInOut'
 });
 
+
 // api ↓↓↓↓↓↓↓↓↓↓↓
 
-// var request = new XMLHttpRequest()
+function callApi(element) {
+  // var request = new XMLHttpRequest()
+  //
+  // request.open('GET', `https://infinite-escarpment-26993.herokuapp.com/component/${element}`, true)
+  // request.onload = function() {
+  //   var data = JSON.parse(this.response)
+  //
+  //   if (request.status >= 200 && request.status < 400) {
+  //     data.forEach(element => {
+  //       return element
+  //     })
+  //   } else {
+  //     console.log('error')
+  //   }
+  // }
+  //
+  // request.send()
 
-// request.open('GET', 'https://', true)
-// request.onload = function() {
-//   var data = JSON.parse(this.response)
+  path = `https://infinite-escarpment-26993.herokuapp.com/${element}`
 
-//   if (request.status >= 200 && request.status < 400) {
-//     data.forEach(movie => {
-//       console.log(movie.title)
-//     })
-//   } else {
-//     console.log('error')
-//   }
-// }
+  fetch(path).then(function(res) {
+    return res.json()
+  }).then(function(json) {
 
-// request.send()
+    let element = JSON.parse(json)
+
+    console.log(element)
+    return element
+
+  }).catch(function(err) {
+    console.log(err.message)
+
+  })
+
+
+}
+
+function UserAction() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             alert(this.responseText);
+         }
+    };
+    xhttp.open("GET", "Your Rest URL Here", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send("Your JSON Data Here");
+
+}
+
 
 // api ↑↑↑↑↑↑↑↑
 
@@ -70,6 +105,7 @@ const sound = document.querySelector('.sound');
 
 icon.addEventListener('click', () => {
   dictate();
+  callApi('image')
 });
 
 
@@ -87,18 +123,16 @@ const dictate = () => {
     if (speechToText.includes('create') || speechToText.includes('add')) {
       // TODO: check for words after create
       if (speechToText.includes('text') || speechToText.includes('paragraph')) {
-         createText(speechToText)
+        var textEl = createText(speechToText)
+        canvas.push(textEl)
       }
       else if (speechToText.includes('image') || speechToText.includes('img')) {
-         var imageEl = createImage(speechToText)
-         canvas.push(imageEl)
+        var imageEl = createImage(speechToText)
+        canvas.push(imageEl)
       }
       else if (speechToText.includes('box') || speechToText.includes('div')) {
         var div = createDiv(speechToText)
         canvas.push(div)
-      }
-      if (speechToText.includes('image')) {
-        createImage(speechToText)
       }
     }
   }
@@ -108,20 +142,28 @@ const dictate = () => {
 
 
   recognition.onstart = function() {
-    voiceMessage.innerHTML = 'Voice recognition activated. Try speaking into the microphone.'
-    document.getElementById("progress").style.display = "block";
-    document.getElementById("mic").style.display = "none";
-
-    circle.animate(10);
+    showProgressBar(true)
   }
   recognition.onspeechend = function() {
-    voiceMessage.innerHTML = 'You were quiet for a while so voice recognition turned itself off.'
-    document.getElementById("mic").style.display = "block";
-    document.getElementById("progress").style.display = "None";
+    showProgressBar(false)
   }
 
   // recognition.continue()
 
+}
+
+function showProgressBar(onOff) {
+  if (onOff == true) {
+    voiceMessage.innerHTML = 'Voice recognition activated. Try speaking into the microphone.'
+    document.getElementById("progress").style.display = "block";
+    // document.getElementById("mic").style.display = "none";
+    circle.animate(10);
+  }
+  else {
+    voiceMessage.innerHTML = 'You were quiet for a while so voice recognition turned itself off.'
+    // document.getElementById("mic").style.display = "block";
+    document.getElementById("progress").style.display = "None";
+  }
 }
 
 // <<<<<<< HEAD
@@ -143,7 +185,7 @@ function createText(text) {
 // Append components directly to the canvas
 function createImage(text) {
   speak('Creating an image')
-  var image = editor.addComponents(`<img src="https://association-amici.org/wp-content/themes/oria/images/placeholder.png" alt="">`);
+  var image = editor.addComponents(``);
   return image
 }
 
@@ -155,7 +197,6 @@ function createDiv(text) {
   return div
 }
 
-
 // speak a message to user
 function speak(message) {
     speechSynthesis.speak(new SpeechSynthesisUtterance(message));
@@ -164,6 +205,7 @@ function speak(message) {
 window.onload = function onLoad() {
 
 };
+
 
 
 // to do:
