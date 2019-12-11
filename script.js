@@ -1,3 +1,5 @@
+const colorsDic = {'white': true, 'red': true, 'white': true, 'black': true, 'blue': true, 'yellow': true, 'grey': true, 'gray': true, 'green': true, 'light blue': true, 'light white': true}
+
 var voiceMessage = document.getElementById('voice_message')
 var circle = new ProgressBar.Circle('#progress', {
     color: '#097054',
@@ -121,14 +123,36 @@ const dictate = () => {
     // Show text to user
     voiceMessage.innerHTML = speechToText
 
+    var color = ''
+
     // Seperate user speech to commands list
     const speechCommands = speechToText.split(" ")
+
+    // if (speechToText.includes('color')) {
+    //   for(var i=0; i<speechCommands.length; i++) {
+    //     if (speechCommands[i] in colorsDic) {
+    //       color = speechCommands[i]
+    //     }
+    //   }
+    // }
+
+    console.log(speechCommands.length)
+    for(var i=0; i<speechCommands.length; i++) {
+      if (speechCommands[i].toLowerCase() in colorsDic) {
+        color = speechCommands[i]
+      }
+      console.log(`${i}: ${speechCommands[i].toLowerCase()}`)
+    }
+
+
+
 
     // Get first commands ex. 'Operation command'
     const command = speechCommands[0]
 
     // print speech array
     console.log(speechCommands)
+
     // print first command from speech
     console.log(command)
 
@@ -137,18 +161,20 @@ const dictate = () => {
     // 2. Commands to listen to: 'Create', 'Color', 'text center',
     // 2. call specific function with element attributes passed as class id
 
+
+
     if (speechToText.includes('create') || speechToText.includes('add')) {
       // TODO: check for words after create
       if (speechToText.includes('text') || speechToText.includes('paragraph')) {
-        var textEl = createText(speechToText)
+        var textEl = createText(speechToText, color)
         canvas.push(textEl)
       }
       else if (speechToText.includes('image') || speechToText.includes('img')) {
-        var imageEl = createImage(speechToText)
+        var imageEl = createImage(speechToText, color)
         canvas.push(imageEl)
       }
       else if (speechToText.includes('box') || speechToText.includes('div')) {
-        var div = createDiv(speechToText)
+        var div = createDiv(speechToText, color)
         canvas.push(div)
       }
     }
@@ -194,9 +220,10 @@ function includes(object, arr) {
 }
 
 // Append components directly to the canvas
-function createText(text) {
+function createText(text, color) {
   speak('Creating a paragraph')
-  editor.addComponents(`<p class="text-success text-center">${text}</p>`);
+  const bootstrapColor = getColor(color)
+  editor.addComponents(`<p class="${bootstrapColor} text-center">${text}</p>`);
 }
 
 // Append components directly to the canvas
@@ -214,6 +241,39 @@ function createDiv(text) {
   return div
 }
 
+function getColor(color) {
+  if (color == "blue") {
+    return 'text-primary'
+  }
+  else if (color == "gray") {
+    return 'text-secondary'
+  }
+  else if (color == "green") {
+    return 'text-success'
+  }
+  else if (color == "red") {
+    return 'text-danger'
+  }
+  else if (color == "yellow") {
+    return 'text-warning'
+  }
+  else if (color == "light blue") {
+    return 'text-info'
+  }
+  else if (color == "light white") {
+    return 'text-light'
+  }
+  else if (color == "black") {
+    return 'text-dark'
+  }
+  else if (color == "grey") {
+    return 'text-muted'
+  }
+  else if (color == "white") {
+    return 'text-white'
+  }
+}
+
 // speak a message to user
 function speak(message) {
     speechSynthesis.speak(new SpeechSynthesisUtterance(message));
@@ -225,6 +285,4 @@ window.onload = function onLoad() {
 
 
 
-// to do:
-// put functions in one file
-// >>>>>>> 0cdd415602f61078f86276c7decc19512eaac971
+// Edge Cases
