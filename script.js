@@ -43,6 +43,16 @@ var editor = grapesjs.init({
   plugins: ['gjs-preset-webpage'],
   pluginsOpts: {
     'gjs-preset-webpage': {}
+  },
+  canvas: {
+      styles: [
+          'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'
+      ],
+      scripts: [
+          'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+          'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
+          'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'
+      ],
   }
 });
 // end of web builder  code
@@ -71,6 +81,8 @@ const dictate = () => {
     const speechToText = event.results[0][0].transcript;
 
     voiceMessage.innerHTML = speechToText
+
+
 
     if (speechToText.includes('create') || speechToText.includes('add')) {
       // TODO: check for words after create
@@ -125,7 +137,7 @@ function includes(object, arr) {
 // Append components directly to the canvas
 function createText(text) {
   speak('Creating a paragraph')
-  editor.addComponents(`<p>${text}</p>`);
+  editor.addComponents(`<p class="text-success text-center">${text}</p>`);
 }
 
 // Append components directly to the canvas
