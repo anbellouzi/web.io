@@ -1,11 +1,18 @@
 const colorsDic = {'white': true, 'red': true, 'white': true, 'black': true, 'blue': true, 'yellow': true, 'grey': true, 'gray': true, 'green': true, 'light blue': true, 'light white': true}
 
 var voiceMessage = document.getElementById('voice_message')
+
 var circle = new ProgressBar.Circle('#progress', {
     color: '#097054',
     duration: 3000,
-    easing: 'easeInOut'
+    easing: 'easeInOut',
 });
+
+function loop(cb) {
+  circle.animate(5, function() {
+    circle.animate(0);
+  });
+}
 
 
 // api ↓↓↓↓↓↓↓↓↓↓↓
@@ -28,22 +35,21 @@ function callApi(element) {
   //
   // request.send()
 
-  path = `https://infinite-escarpment-26993.herokuapp.com/${element}`
-
-  fetch(path).then(function(res) {
-    return res.json()
-  }).then(function(json) {
-
-    let element = JSON.parse(json)
-
-    console.log(element)
-    return element
-
-  }).catch(function(err) {
-    console.log(err.message)
-
-  })
-
+  // path = `https://infinite-escarpment-26993.herokuapp.com/${element}`
+  //
+  // fetch(path).then(function(res) {
+  //   return res.json()
+  // }).then(function(json) {
+  //
+  //   let element = JSON.parse(json)
+  //
+  //   console.log(element)
+  //   return element
+  //
+  // }).catch(function(err) {
+  //   console.log(err.message)
+  //
+  // })
 
 }
 
@@ -116,11 +122,11 @@ var canvas = []
 const dictate = () => {
   recognition.start();
   recognition.onresult = (event) => {
+    showProgressBar(false)
 
-    // Final commands string
+
     const speechToText = event.results[0][0].transcript;
 
-    // Show text to user
     voiceMessage.innerHTML = speechToText
 
     var color = ''
@@ -156,10 +162,6 @@ const dictate = () => {
     // print first command from speech
     console.log(command)
 
-    // TODO:
-    // 1. loop over the speechCommands and generate element attributes
-    // 2. Commands to listen to: 'Create', 'Color', 'text center',
-    // 2. call specific function with element attributes passed as class id
 
 
 
@@ -180,32 +182,40 @@ const dictate = () => {
     }
   }
 
-  console.log(canvas)
-
-
-
   recognition.onstart = function() {
     showProgressBar(true)
   }
+
   recognition.onspeechend = function() {
     showProgressBar(false)
   }
 
-  // recognition.continue()
+  recognition.speechstart = function() {
+    showProgressBar(true)
+  }
+
+  recognition.onend = function() {
+    showProgressBar(false)
+  }
+
 
 }
 
 function showProgressBar(onOff) {
   if (onOff == true) {
-    voiceMessage.innerHTML = 'Voice recognition activated. Try speaking into the microphone.'
+    voiceMessage.innerHTML = 'Voice Activated'
     document.getElementById("progress").style.display = "block";
     // document.getElementById("mic").style.display = "none";
-    circle.animate(10);
+
+    setInterval(loop, 5000);
+
+
   }
   else {
-    voiceMessage.innerHTML = 'You were quiet for a while so voice recognition turned itself off.'
-    // document.getElementById("mic").style.display = "block";
+    voiceMessage.innerHTML = 'Click to activate'
+    circle.animate(0);
     document.getElementById("progress").style.display = "None";
+
   }
 }
 
