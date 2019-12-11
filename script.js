@@ -114,28 +114,11 @@ var canvas = []
 const dictate = () => {
   recognition.start();
   recognition.onresult = (event) => {
-
-    // Final commands string
     const speechToText = event.results[0][0].transcript;
 
-    // Show text to user
     voiceMessage.innerHTML = speechToText
 
-    // Seperate user speech to commands list
-    const speechCommands = speechToText.split(" ")
 
-    // Get first commands ex. 'Operation command'
-    const command = speechCommands[0]
-
-    // print speech array
-    console.log(speechCommands)
-    // print first command from speech
-    console.log(command)
-
-    // TODO:
-    // 1. loop over the speechCommands and generate element attributes
-    // 2. Commands to listen to: 'Create', 'Color', 'text center',
-    // 2. call specific function with element attributes passed as class id
 
     if (speechToText.includes('create') || speechToText.includes('add')) {
       // TODO: check for words after create
