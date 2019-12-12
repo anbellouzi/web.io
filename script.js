@@ -1,5 +1,5 @@
 const colorsDic = {'white': true, 'red': true, 'white': true, 'black': true, 'blue': true, 'yellow': true, 'grey': true, 'gray': true, 'green': true, 'light blue': true, 'light white': true}
-const commandsDic = {'create': true, 'add': true, 'delete': true}
+const commandsDic = {'create': true, 'add': true, 'remove': true}
 const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div'}
 
 
@@ -20,7 +20,7 @@ function loop(cb) {
 
 // api ↓↓↓↓↓↓↓↓↓↓↓
 
-function callApi(element) {
+//function callApi(element) {}[]
   // var request = new XMLHttpRequest()
   //
   // request.open('GET', `https://infinite-escarpment-26993.herokuapp.com/component/${element}`, true)
@@ -54,7 +54,7 @@ function callApi(element) {
   //
   // })
 
-}
+//}
 
 function UserAction() {
     var xhttp = new XMLHttpRequest();
@@ -164,7 +164,7 @@ const dictate = () => {
     }
 
     console.log(`Function Name: ${functionName}`)
-      console.log(`element Name: ${elementName}`)
+    console.log(`element Name: ${elementName}`)
 
 
     // get function name from string 
@@ -238,6 +238,24 @@ function create(elementArr) {
 
   canvas.push(elementCreated)
 }
+
+function remove(elementArr) {
+  // hardcode above 
+  const elementName = elementArr[0];
+  console.log(elementName)
+  
+
+}
+
+
+
+
+
+
+
+
+
+
 
 function showProgressBar(onOff) {
   if (onOff == true) {
