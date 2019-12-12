@@ -162,7 +162,7 @@ const dictate = () => {
       }
       // check if there is an element name
       else if (speechCommands[i].toLowerCase() in elementsDic) {
-        elementName = speechCommands[i]
+        elementName = elementsDic[speechCommands[i]]
       }
 
       // console.log(`${i}: ${speechCommands[i].toLowerCase()}`)
@@ -211,13 +211,13 @@ function create(elementArr) {
     speak(`Creating ${element}`)
   }
 
-  if ((element == 'paragraph') || (element == 'text')) {
+  if ((element == 'p')) {
     wrapperChildren.add(`<p class="${bootstrapColor} text-center">${text}</p>`)
   }
-  else if ((element == 'image') || (element == 'picture')) {
+  else if ((element == 'img')) {
     wrapperChildren.add(`<img class="${bootstrapColor} text-center" src="#" alt="image">`)
   }
-  else if ((element == 'box') || (element == 'container')) {
+  else if ((element == 'div')) {
     wrapperChildren.add(`<div class="${bootstrapColor} text-center">${text}</div>`)
   }
 
@@ -226,24 +226,34 @@ function create(elementArr) {
 
 
 function remove(elementArr) {
-  const element = elementArr[0]
+  var element = elementArr[0]
   const text = elementArr[2]
+  var elementExist = true;
 
-  console.log(`_________ ${element}__________`)
+  console.log(`Removing ${element}`)
 
-  speak(`Removing ${element}`)
+  speak(`Removing ${element} tag`)
 
+  // TODO:
+  // change for loop to get one element only then remove
   for (var i=0; i< wrapperChildren.models.length; i++) {
     var model = wrapperChildren.models[i]
-    if ((elementArr[0] == model.attributes.type) || (elementArr[0] == model.attributes.type)) {
+    if ((element == model.attributes.tagName) || (elementArr[0] == model.attributes.type)) {
       wrapperChildren.remove(model);
     }
+    else {
+      elementExist = false
+    }
+  }
+
+  if (elementExist == false) {
+    speak(`There is no ${element} to remove`)
   }
 }
 
 
 
-console.log(wrapperChildren.models[0].attributes)
+console.log(wrapperChildren.models[1].attributes)
 
 
 // to get tagName
