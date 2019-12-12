@@ -1,7 +1,8 @@
 const colorsDic = {'white': true, 'red': true, 'white': true, 'black': true, 'blue': true, 'yellow': true, 'grey': true, 'gray': true, 'green': true, 'light blue': true, 'light white': true}
-const commandsDic = {'create': true, 'add': true, 'remove': true}
+// commandsDic: {command: functionName}
+const commandsDic = {'create': 'create', 'add': 'create', 'remove': 'remove', 'delete': 'remove'}
+// commandsDic: {element: tagName}
 const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p'}
-
 
 var voiceMessage = document.getElementById('voice_message')
 
@@ -158,7 +159,7 @@ const dictate = () => {
       }
       // check if there is function name
       else if (speechCommands[i].toLowerCase() in commandsDic) {
-        functionName = speechCommands[i]
+        functionName = commandsDic[speechCommands[i]]
       }
       // check if there is an element name
       else if (speechCommands[i].toLowerCase() in elementsDic) {
