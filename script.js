@@ -1,6 +1,6 @@
 const colorsDic = {'white': true, 'red': true, 'white': true, 'black': true, 'blue': true, 'yellow': true, 'grey': true, 'gray': true, 'green': true, 'light blue': true, 'light white': true}
 const commandsDic = {'create': true, 'add': true, 'remove': true}
-const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div'}
+const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p'}
 
 
 var voiceMessage = document.getElementById('voice_message')
@@ -117,11 +117,16 @@ const sound = document.querySelector('.sound');
 
 icon.addEventListener('click', () => {
   dictate();
-  callApi('image')
+  // callApi('image')
 });
+
+const domComponents = editor.DomComponents;
+var wrapperChildren = domComponents.getComponents();
 
 
 var canvas = []
+console.log(wrapperChildren.models[0].attributes.type)
+
 
 const dictate = () => {
   recognition.start();
@@ -143,7 +148,7 @@ const dictate = () => {
     // Seperate user speech to commands list
     const speechCommands = speechToText.split(" ")
 
-    console.log(speechCommands.length)
+    // console.log(speechCommands.length)
 
 
     for(var i=0; i<speechCommands.length; i++) {
@@ -160,36 +165,19 @@ const dictate = () => {
         elementName = speechCommands[i]
       }
 
-      console.log(`${i}: ${speechCommands[i].toLowerCase()}`)
+      // console.log(`${i}: ${speechCommands[i].toLowerCase()}`)
     }
 
-    console.log(`Function Name: ${functionName}`)
-    console.log(`element Name: ${elementName}`)
+    // console.log(`Function Name: ${functionName}`)
+    // console.log(`element Name: ${elementName}`)
 
 
-    // get function name from string 
+    // get function name from string
     var functionCall = window[functionName]
 
     var params = [elementName, color, speechToText];
 
     if (typeof functionCall === 'function') functionCall.call(this, params)
-
-
-    // if (speechToText.includes('create') || speechToText.includes('add')) {
-    //   // TODO: check for words after create
-    //   if (speechToText.includes('text') || speechToText.includes('paragraph')) {
-    //     var textEl = createText(speechToText, color)
-    //     canvas.push(textEl)
-    //   }
-    //   else if (speechToText.includes('image') || speechToText.includes('img')) {
-    //     var imageEl = createImage(speechToText, color)
-    //     canvas.push(imageEl)
-    //   }
-    //   else if (speechToText.includes('box') || speechToText.includes('div')) {
-    //     var div = createDiv(speechToText, color)
-    //     canvas.push(div)
-    //   }
-    // }
   }
 
   recognition.onstart = function() {
@@ -211,47 +199,58 @@ const dictate = () => {
 
 
 function create(elementArr) {
-  console.log("____________________")
   const element = elementArr[0]
   const bootstrapColor = getColor(elementArr[1])
   const text = elementArr[2]
-
-
-
   var elementCreated = ''
 
- console.log(`___________ ${elementArr} ______________ `)
+  if (elementArr[1]) {
+      speak(`Creating ${element} with color ${elementArr[1]}`)
+  }
+  else {
+    speak(`Creating ${element}`)
+  }
 
-  
   if ((element == 'paragraph') || (element == 'text')) {
-    speak('Creating a paragraph')
-    elementCreated = editor.addComponents(`<p class="${bootstrapColor} text-center">${text}</p>`);
+    wrapperChildren.add(`<p class="${bootstrapColor} text-center">${text}</p>`)
   }
   else if ((element == 'image') || (element == 'picture')) {
-    speak('Creating an image')
-    elementCreated = editor.addComponents(`<img class="${bootstrapColor} text-center" src="#" alt="image">`);
+    wrapperChildren.add(`<img class="${bootstrapColor} text-center" src="#" alt="image">`)
   }
   else if ((element == 'box') || (element == 'container')) {
-    speak('Creating an div')
-    elementCreated = editor.addComponents(`<div class="${bootstrapColor} text-center">${text}</div>`);
+    wrapperChildren.add(`<div class="${bootstrapColor} text-center">${text}</div>`)
   }
 
   canvas.push(elementCreated)
 }
 
-function remove(elementArr) {
-  // hardcode above 
-  const elementName = elementArr[0];
-  console.log(elementName)
-  
 
+function remove(elementArr) {
+  const element = elementArr[0]
+  const text = elementArr[2]
+
+  console.log(`_________ ${element}__________`)
+
+  speak(`Removing ${element}`)
+
+  for (var i=0; i< wrapperChildren.models.length; i++) {
+    var model = wrapperChildren.models[i]
+    if ((elementArr[0] == model.attributes.type) || (elementArr[0] == model.attributes.type)) {
+      wrapperChildren.remove(model);
+    }
+  }
 }
 
 
 
+console.log(wrapperChildren.models[0].attributes)
 
 
+// to get tagName
+// wrapperChildren.models[0].attributes.tagName
 
+// to get type of element
+// wrapperChildren.models[0].attributes.type
 
 
 
