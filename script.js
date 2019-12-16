@@ -1,4 +1,4 @@
-const colorsDic = {'white': true, 'red': true, 'white': true, 'black': true, 'blue': true, 'yellow': true, 'grey': true, 'gray': true, 'green': true, 'light blue': true, 'light white': true}
+const colorsDic = {'red': 'text-danger', 'white': 'text-white', 'black': 'text-dark', 'blue': 'text-primary', 'yellow': true, 'grey': 'text-muted', 'gray': 'text-secondary', 'green': 'text-success', 'light blue': 'text-info', 'light white': 'text-light'}
 // commandsDic: {command: functionName}
 const commandsDic = {'create': 'create', 'add': 'create', 'remove': 'remove', 'delete': 'remove'}
 // commandsDic: {element: tagName}
@@ -87,9 +87,10 @@ var editor = grapesjs.init({
   container: '#gjs',
   fromElement: true,
 
-  plugins: ['gjs-preset-webpage'],
+  plugins: ['gjs-preset-webpage', 'gjs-navbar'],
   pluginsOpts: {
-    'gjs-preset-webpage': {}
+    'gjs-preset-webpage': {},
+    'gjs-navbar': {}
   },
   canvas: {
       styles: [
@@ -123,39 +124,30 @@ icon.addEventListener('click', () => {
 
 const domComponents = editor.DomComponents;
 var wrapperChildren = domComponents.getComponents();
-
-
-var canvas = []
 console.log(wrapperChildren.models[0].attributes.type)
-
 
 const dictate = () => {
   recognition.start();
   recognition.onresult = (event) => {
     showProgressBar(false)
 
-
     const speechToText = event.results[0][0].transcript;
-
     voiceMessage.innerHTML = speechToText
 
+    // element params
     var color = '';
     var functionName = '';
     var elementName = '';
 
-
-
-
-    // Seperate user speech to commands list
+    // Seperate user speech to word list
     const speechCommands = speechToText.split(" ")
 
-    // console.log(speechCommands.length)
-
-
+    // Extract element params from speech list
     for(var i=0; i<speechCommands.length; i++) {
+
       // check if there is a color
       if (speechCommands[i].toLowerCase() in colorsDic) {
-        color = speechCommands[i]
+        color = colorsDic[speechCommands[i]]
       }
       // check if there is function name
       else if (speechCommands[i].toLowerCase() in commandsDic) {
@@ -166,18 +158,13 @@ const dictate = () => {
         elementName = elementsDic[speechCommands[i]]
       }
 
-      // console.log(`${i}: ${speechCommands[i].toLowerCase()}`)
     }
-
-    // console.log(`Function Name: ${functionName}`)
-    // console.log(`element Name: ${elementName}`)
-
 
     // get function name from string
     var functionCall = window[functionName]
-
+    // element params
     var params = [elementName, color, speechToText];
-
+    // call function from functionName
     if (typeof functionCall === 'function') functionCall.call(this, params)
   }
 
@@ -201,9 +188,8 @@ const dictate = () => {
 
 function create(elementArr) {
   const element = elementArr[0]
-  const bootstrapColor = getColor(elementArr[1])
+  const bootstrapColor = elementArr[1]
   const text = elementArr[2]
-  var elementCreated = ''
 
   if (elementArr[1]) {
       speak(`Creating ${element} with color ${elementArr[1]}`)
@@ -222,7 +208,6 @@ function create(elementArr) {
     wrapperChildren.add(`<div class="${bootstrapColor} text-center">${text}</div>`)
   }
 
-  canvas.push(elementCreated)
 }
 
 
@@ -291,48 +276,8 @@ function includes(object, arr) {
 }
 
 
-function getColor(color) {
-  if (color == "blue") {
-    return 'text-primary'
-  }
-  else if (color == "gray") {
-    return 'text-secondary'
-  }
-  else if (color == "green") {
-    return 'text-success'
-  }
-  else if (color == "red") {
-    return 'text-danger'
-  }
-  else if (color == "yellow") {
-    return 'text-warning'
-  }
-  else if (color == "light blue") {
-    return 'text-info'
-  }
-  else if (color == "light white") {
-    return 'text-light'
-  }
-  else if (color == "black") {
-    return 'text-dark'
-  }
-  else if (color == "grey") {
-    return 'text-muted'
-  }
-  else if (color == "white") {
-    return 'text-white'
-  }
-}
 
 // speak a message to user
 function speak(message) {
     speechSynthesis.speak(new SpeechSynthesisUtterance(message));
 }
-
-window.onload = function onLoad() {
-
-};
-
-
-
-// Edge Cases
