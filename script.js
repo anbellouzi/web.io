@@ -1,8 +1,8 @@
-const colorsDic = {'white': true, 'red': true, 'white': true, 'black': true, 'blue': true, 'yellow': true, 'grey': true, 'gray': true, 'green': true, 'light blue': true, 'light white': true}
+const colorsDic = {'red': 'text-danger', 'white': 'text-white', 'black': 'text-dark', 'blue': 'text-primary', 'yellow': true, 'grey': 'text-muted', 'gray': 'text-secondary', 'green': 'text-success', 'light blue': 'text-info', 'light white': 'text-light'}
 // commandsDic: {command: functionName}
 const commandsDic = {'create': 'create', 'add': 'create', 'remove': 'remove', 'delete': 'remove'}
 // commandsDic: {element: tagName}
-const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p', 'header': 'h'}
+const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p', 'carousel': 'carousel', 'image list': 'carousel', 'navbar': 'navbar', 'navigation': 'navbar'}
 
 var voiceMessage = document.getElementById('voice_message')
 
@@ -18,55 +18,28 @@ function loop(cb) {
   });
 }
 
-
-// api ↓↓↓↓↓↓↓↓↓↓↓
-
-function callApi(element) {
+function getComponent(element) {
   var request = new XMLHttpRequest()
-  
+  var component = 'none'
   request.open('GET', `https://bootstrap-api.herokuapp.com/components/${element}`, true)
   request.onload = function() {
+    // Begin accessing JSON data here
     var data = JSON.parse(this.response)
   
     if (request.status >= 200 && request.status < 400) {
-      data.forEach(element => {
-        return element
-      })
+      // data.forEach(component => {
+        console.log(data.component[0].html)
+        component = data.component[0].html
+        
+      // })
     } else {
       console.log('error')
     }
+
+    return component
   }
   
   request.send()
-
-  path = `https://bootstrap-api.herokuapp.com/components/${element}`
-  
-  fetch(path).then(function(res) {
-    return res.json()
-  }).then(function(json) {
-  
-    let element = JSON.parse(json)
-  
-    console.log(element)
-    return element
-  
-  }).catch(function(err) {
-    console.log(err.message)
-  
-  })
-
-}
-
-function UserAction() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-         if (this.readyState == 4 && this.status == 200) {
-             alert(this.responseText);
-         }
-    };
-    xhttp.open("GET", "Your Rest URL Here", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send("Your JSON Data Here");
 
 }
 
@@ -87,9 +60,10 @@ var editor = grapesjs.init({
   container: '#gjs',
   fromElement: true,
 
-  plugins: ['gjs-preset-webpage'],
+  plugins: ['gjs-preset-webpage', 'gjs-navbar'],
   pluginsOpts: {
-    'gjs-preset-webpage': {}
+    'gjs-preset-webpage': {},
+    'gjs-navbar': {}
   },
   canvas: {
       styles: [
@@ -118,14 +92,14 @@ const sound = document.querySelector('.sound');
 
 icon.addEventListener('click', () => {
   dictate();
-  callApi('navbar')
+
+  // ...
+  getComponent('div')
+
 });
 
 const domComponents = editor.DomComponents;
 var wrapperChildren = domComponents.getComponents();
-
-
-var canvas = []
 console.log(wrapperChildren.models[0].attributes.type)
 
 
@@ -134,28 +108,23 @@ const dictate = () => {
   recognition.onresult = (event) => {
     showProgressBar(false)
 
-
     const speechToText = event.results[0][0].transcript;
-
     voiceMessage.innerHTML = speechToText
 
+    // element params
     var color = '';
     var functionName = '';
     var elementName = '';
 
-
-
-
-    // Seperate user speech to commands list
+    // Seperate user speech to word list
     const speechCommands = speechToText.split(" ")
 
-    // console.log(speechCommands.length)
-
-
+    // Extract element params from speech list
     for(var i=0; i<speechCommands.length; i++) {
+
       // check if there is a color
       if (speechCommands[i].toLowerCase() in colorsDic) {
-        color = speechCommands[i]
+        color = colorsDic[speechCommands[i]]
       }
       // check if there is function name
       else if (speechCommands[i].toLowerCase() in commandsDic) {
@@ -166,18 +135,13 @@ const dictate = () => {
         elementName = elementsDic[speechCommands[i]]
       }
 
-      // console.log(`${i}: ${speechCommands[i].toLowerCase()}`)
     }
-
-    // console.log(`Function Name: ${functionName}`)
-    // console.log(`element Name: ${elementName}`)
-
 
     // get function name from string
     var functionCall = window[functionName]
-
+    // element params
     var params = [elementName, color, speechToText];
-
+    // call function from functionName
     if (typeof functionCall === 'function') functionCall.call(this, params)
   }
 
@@ -201,9 +165,8 @@ const dictate = () => {
 
 function create(elementArr) {
   const element = elementArr[0]
-  const bootstrapColor = getColor(elementArr[1])
+  const bootstrapColor = elementArr[1]
   const text = elementArr[2]
-  var elementCreated = ''
 
   if (elementArr[1]) {
       speak(`Creating ${element} with color ${elementArr[1]}`)
@@ -212,54 +175,48 @@ function create(elementArr) {
     speak(`Creating ${element}`)
   }
 
-  if ((element == 'p')) {
-    wrapperChildren.add(`<p class="${bootstrapColor} text-center">${text}</p>`)
-  }
-  else if ((element == 'img')) {
-    wrapperChildren.add(`<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>`)
-  }
-  else if ((element == 'div')) {
-    wrapperChildren.add(`<div class="${bootstrapColor} text-center">${text}</div>`)
-  }
-  else if ((element == 'h1')) {
-    wrapperChildren.add(`<h1 class="${bootstrapColor} bold text-center">${text}</h1>`)
-  }
-  
-  canvas.push(elementCreated)
+  const api_component = getComponent(element)
+
+  alert(api_component)
+
+  // if ((element == 'box')) {
+  wrapperChildren.add(api_component)
+  // }
+  // else if ((element == 'img')) {
+  //   wrapperChildren.add(`<img class="${bootstrapColor} text-center" src="#" alt="image">`)
+  // }
+  // else if ((element == 'div')) {
+  //   wrapperChildren.add(`<div class="${bootstrapColor} text-center">${text}</div>`)
+  // }
+  // else if ((element == 'carousel')) {
+  //   editor.addComponents(`<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  //     <ol class="carousel-indicators">
+  //       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+  //       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+  //       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  //     </ol>
+  //     <div class="carousel-inner">
+  //       <div class="carousel-item active">
+  //         <img class="d-block w-100" src="https://www.imgacademy.com/sites/default/files/homepage-hero-2019-q1-edited-tennis-bg.jpg" width='300px' alt="First slide">
+  //       </div>
+  //       <div class="carousel-item">
+  //         <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr-n2KPCED2aXXmHhmNCdBvhc7KIuebMNxLaKVZ0k6Cq5umXuA&s"  width='300px' alt="Second slide">
+  //       </div>
+  //       <div class="carousel-item">
+  //         <img class="d-block w-100" src="..." alt="Third slide">
+  //       </div>
+  //     </div>
+  //     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+  //       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  //       <span class="sr-only">Previous</span>
+  //     </a>
+  //     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+  //       <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  //       <span class="sr-only">Next</span>
+  //     </a>
+  //   </div>`);
+  // }
+
 }
 
 
@@ -328,48 +285,8 @@ function includes(object, arr) {
 }
 
 
-function getColor(color) {
-  if (color == "blue") {
-    return 'text-primary'
-  }
-  else if (color == "gray") {
-    return 'text-secondary'
-  }
-  else if (color == "green") {
-    return 'text-success'
-  }
-  else if (color == "red") {
-    return 'text-danger'
-  }
-  else if (color == "yellow") {
-    return 'text-warning'
-  }
-  else if (color == "light blue") {
-    return 'text-info'
-  }
-  else if (color == "light white") {
-    return 'text-light'
-  }
-  else if (color == "black") {
-    return 'text-dark'
-  }
-  else if (color == "grey") {
-    return 'text-muted'
-  }
-  else if (color == "white") {
-    return 'text-white'
-  }
-}
 
 // speak a message to user
 function speak(message) {
     speechSynthesis.speak(new SpeechSynthesisUtterance(message));
 }
-
-window.onload = function onLoad() {
-
-};
-
-
-
-// Edge Cases
