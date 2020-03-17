@@ -2,7 +2,7 @@ const colorsDic = {'white': true, 'red': true, 'white': true, 'black': true, 'bl
 // commandsDic: {command: functionName}
 const commandsDic = {'create': 'create', 'add': 'create', 'remove': 'remove', 'delete': 'remove'}
 // commandsDic: {element: tagName}
-const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p'}
+const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p', 'header': 'h'}
 
 var voiceMessage = document.getElementById('voice_message')
 
@@ -21,41 +21,41 @@ function loop(cb) {
 
 // api ↓↓↓↓↓↓↓↓↓↓↓
 
-//function callApi(element) {}[]
-  // var request = new XMLHttpRequest()
-  //
-  // request.open('GET', `https://infinite-escarpment-26993.herokuapp.com/component/${element}`, true)
-  // request.onload = function() {
-  //   var data = JSON.parse(this.response)
-  //
-  //   if (request.status >= 200 && request.status < 400) {
-  //     data.forEach(element => {
-  //       return element
-  //     })
-  //   } else {
-  //     console.log('error')
-  //   }
-  // }
-  //
-  // request.send()
+function callApi(element) {
+  var request = new XMLHttpRequest()
+  
+  request.open('GET', `https://bootstrap-api.herokuapp.com/components/${element}`, true)
+  request.onload = function() {
+    var data = JSON.parse(this.response)
+  
+    if (request.status >= 200 && request.status < 400) {
+      data.forEach(element => {
+        return element
+      })
+    } else {
+      console.log('error')
+    }
+  }
+  
+  request.send()
 
-  // path = `https://infinite-escarpment-26993.herokuapp.com/${element}`
-  //
-  // fetch(path).then(function(res) {
-  //   return res.json()
-  // }).then(function(json) {
-  //
-  //   let element = JSON.parse(json)
-  //
-  //   console.log(element)
-  //   return element
-  //
-  // }).catch(function(err) {
-  //   console.log(err.message)
-  //
-  // })
+  path = `https://bootstrap-api.herokuapp.com/components/${element}`
+  
+  fetch(path).then(function(res) {
+    return res.json()
+  }).then(function(json) {
+  
+    let element = JSON.parse(json)
+  
+    console.log(element)
+    return element
+  
+  }).catch(function(err) {
+    console.log(err.message)
+  
+  })
 
-//}
+}
 
 function UserAction() {
     var xhttp = new XMLHttpRequest();
@@ -118,7 +118,7 @@ const sound = document.querySelector('.sound');
 
 icon.addEventListener('click', () => {
   dictate();
-  // callApi('image')
+  callApi('navbar')
 });
 
 const domComponents = editor.DomComponents;
@@ -216,12 +216,49 @@ function create(elementArr) {
     wrapperChildren.add(`<p class="${bootstrapColor} text-center">${text}</p>`)
   }
   else if ((element == 'img')) {
-    wrapperChildren.add(`<img class="${bootstrapColor} text-center" src="#" alt="image">`)
+    wrapperChildren.add(`<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>`)
   }
   else if ((element == 'div')) {
     wrapperChildren.add(`<div class="${bootstrapColor} text-center">${text}</div>`)
   }
-
+  else if ((element == 'h1')) {
+    wrapperChildren.add(`<h1 class="${bootstrapColor} bold text-center">${text}</h1>`)
+  }
+  
   canvas.push(elementCreated)
 }
 
