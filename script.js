@@ -2,7 +2,7 @@ const colorsDic = {'red': 'text-danger', 'white': 'text-white', 'black': 'text-d
 // commandsDic: {command: functionName}
 const commandsDic = {'create': 'create', 'add': 'create', 'remove': 'remove', 'delete': 'remove'}
 // commandsDic: {element: tagName}
-const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p'}
+const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p', 'carousel': 'carousel', 'image list': 'carousel', 'navbar': 'navbar', 'navigation': 'navbar'}
 
 var voiceMessage = document.getElementById('voice_message')
 
@@ -18,55 +18,28 @@ function loop(cb) {
   });
 }
 
+function getComponent(element) {
+  var request = new XMLHttpRequest()
+  var component = 'none'
+  request.open('GET', `https://bootstrap-api.herokuapp.com/components/${element}`, true)
+  request.onload = function() {
+    // Begin accessing JSON data here
+    var data = JSON.parse(this.response)
+  
+    if (request.status >= 200 && request.status < 400) {
+      // data.forEach(component => {
+        console.log(data.component[0].html)
+        component = data.component[0].html
+        
+      // })
+    } else {
+      console.log('error')
+    }
 
-// api ↓↓↓↓↓↓↓↓↓↓↓
-
-//function callApi(element) {}[]
-  // var request = new XMLHttpRequest()
-  //
-  // request.open('GET', `https://infinite-escarpment-26993.herokuapp.com/component/${element}`, true)
-  // request.onload = function() {
-  //   var data = JSON.parse(this.response)
-  //
-  //   if (request.status >= 200 && request.status < 400) {
-  //     data.forEach(element => {
-  //       return element
-  //     })
-  //   } else {
-  //     console.log('error')
-  //   }
-  // }
-  //
-  // request.send()
-
-  // path = `https://infinite-escarpment-26993.herokuapp.com/${element}`
-  //
-  // fetch(path).then(function(res) {
-  //   return res.json()
-  // }).then(function(json) {
-  //
-  //   let element = JSON.parse(json)
-  //
-  //   console.log(element)
-  //   return element
-  //
-  // }).catch(function(err) {
-  //   console.log(err.message)
-  //
-  // })
-
-//}
-
-function UserAction() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-         if (this.readyState == 4 && this.status == 200) {
-             alert(this.responseText);
-         }
-    };
-    xhttp.open("GET", "Your Rest URL Here", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send("Your JSON Data Here");
+    return component
+  }
+  
+  request.send()
 
 }
 
@@ -119,12 +92,16 @@ const sound = document.querySelector('.sound');
 
 icon.addEventListener('click', () => {
   dictate();
-  // callApi('image')
+
+  // ...
+  getComponent('div')
+
 });
 
 const domComponents = editor.DomComponents;
 var wrapperChildren = domComponents.getComponents();
 console.log(wrapperChildren.models[0].attributes.type)
+
 
 const dictate = () => {
   recognition.start();
@@ -198,15 +175,47 @@ function create(elementArr) {
     speak(`Creating ${element}`)
   }
 
-  if ((element == 'p')) {
-    wrapperChildren.add(`<p class="${bootstrapColor} text-center">${text}</p>`)
-  }
-  else if ((element == 'img')) {
-    wrapperChildren.add(`<img class="${bootstrapColor} text-center" src="#" alt="image">`)
-  }
-  else if ((element == 'div')) {
-    wrapperChildren.add(`<div class="${bootstrapColor} text-center">${text}</div>`)
-  }
+  const api_component = getComponent(element)
+
+  alert(api_component)
+
+  // if ((element == 'box')) {
+  wrapperChildren.add(api_component)
+  // }
+  // else if ((element == 'img')) {
+  //   wrapperChildren.add(`<img class="${bootstrapColor} text-center" src="#" alt="image">`)
+  // }
+  // else if ((element == 'div')) {
+  //   wrapperChildren.add(`<div class="${bootstrapColor} text-center">${text}</div>`)
+  // }
+  // else if ((element == 'carousel')) {
+  //   editor.addComponents(`<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  //     <ol class="carousel-indicators">
+  //       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+  //       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+  //       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  //     </ol>
+  //     <div class="carousel-inner">
+  //       <div class="carousel-item active">
+  //         <img class="d-block w-100" src="https://www.imgacademy.com/sites/default/files/homepage-hero-2019-q1-edited-tennis-bg.jpg" width='300px' alt="First slide">
+  //       </div>
+  //       <div class="carousel-item">
+  //         <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr-n2KPCED2aXXmHhmNCdBvhc7KIuebMNxLaKVZ0k6Cq5umXuA&s"  width='300px' alt="Second slide">
+  //       </div>
+  //       <div class="carousel-item">
+  //         <img class="d-block w-100" src="..." alt="Third slide">
+  //       </div>
+  //     </div>
+  //     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+  //       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  //       <span class="sr-only">Previous</span>
+  //     </a>
+  //     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+  //       <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  //       <span class="sr-only">Next</span>
+  //     </a>
+  //   </div>`);
+  // }
 
 }
 
