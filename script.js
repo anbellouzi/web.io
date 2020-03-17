@@ -6,45 +6,27 @@ const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p'
 
 var voiceMessage = document.getElementById('voice_message')
 
-var circle = new ProgressBar.Circle('#progress', {
-    color: '#097054',
-    duration: 3000,
-    easing: 'easeInOut',
-});
 
-function loop(cb) {
-  circle.animate(5, function() {
-    circle.animate(0);
-  });
+// import function to import other js files 
+function include(file) { 
+  
+  var script  = document.createElement('script'); 
+  script.src  = file; 
+  script.type = 'text/javascript'; 
+  script.defer = true; 
+  
+  document.getElementsByTagName('head').item(0).appendChild(script); 
+  
 }
 
-function getComponent(element) {
-  var request = new XMLHttpRequest()
-  var component = 'none'
-  request.open('GET', `https://bootstrap-api.herokuapp.com/components/${element}`, true)
-  request.onload = function() {
-    // Begin accessing JSON data here
-    var data = JSON.parse(this.response)
-  
-    if (request.status >= 200 && request.status < 400) {
-      // data.forEach(component => {
-        console.log(data.component[0].html)
-        component = data.component[0].html
-        
-      // })
-    } else {
-      console.log('error')
-    }
-
-    return component
-  }
-  
-  request.send()
-
-}
-
-
-// api ↑↑↑↑↑↑↑↑
+// import voice recognition api ↑↑↑↑↑↑↑↑
+include('./modules/voice-recognition.js');
+// import bootstrap api ↑↑↑↑↑↑↑↑
+include('./modules/bootstrap-api.js');
+// import create command ↑↑↑↑↑↑↑↑
+include('./modules/create-command.js');
+// import remove command ↑↑↑↑↑↑↑↑
+include('./modules/remove-command.js');
 
 
 // web builder  code
@@ -79,176 +61,14 @@ var editor = grapesjs.init({
 });
 // end of web builder  code
 
-window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-const synth = window.speechSynthesis;
-const recognition = new SpeechRecognition();
-//recognition.continuous = false;
 
-const icon = document.querySelector('i.fa.fa-microphone')
-let paragraph = document.createElement('p');
-let container = document.querySelector('.text-box');
-container.appendChild(paragraph);
-const sound = document.querySelector('.sound');
-
-icon.addEventListener('click', () => {
-  dictate();
-
-  // ...
-  getComponent('div')
-
-});
 
 const domComponents = editor.DomComponents;
 var wrapperChildren = domComponents.getComponents();
 console.log(wrapperChildren.models[0].attributes.type)
 
 
-const dictate = () => {
-  recognition.start();
-  recognition.onresult = (event) => {
-    showProgressBar(false)
-
-    const speechToText = event.results[0][0].transcript;
-    voiceMessage.innerHTML = speechToText
-
-    // element params
-    var color = '';
-    var functionName = '';
-    var elementName = '';
-
-    // Seperate user speech to word list
-    const speechCommands = speechToText.split(" ")
-
-    // Extract element params from speech list
-    for(var i=0; i<speechCommands.length; i++) {
-
-      // check if there is a color
-      if (speechCommands[i].toLowerCase() in colorsDic) {
-        color = colorsDic[speechCommands[i]]
-      }
-      // check if there is function name
-      else if (speechCommands[i].toLowerCase() in commandsDic) {
-        functionName = commandsDic[speechCommands[i]]
-      }
-      // check if there is an element name
-      else if (speechCommands[i].toLowerCase() in elementsDic) {
-        elementName = elementsDic[speechCommands[i]]
-      }
-
-    }
-
-    // get function name from string
-    var functionCall = window[functionName]
-    // element params
-    var params = [elementName, color, speechToText];
-    // call function from functionName
-    if (typeof functionCall === 'function') functionCall.call(this, params)
-  }
-
-  recognition.onstart = function() {
-    showProgressBar(true)
-  }
-
-  recognition.onspeechend = function() {
-    showProgressBar(false)
-  }
-
-  recognition.speechstart = function() {
-    showProgressBar(true)
-  }
-
-  recognition.onend = function() {
-    showProgressBar(false)
-  }
-}
-
-
-function create(elementArr) {
-  const element = elementArr[0]
-  const bootstrapColor = elementArr[1]
-  const text = elementArr[2]
-
-  if (elementArr[1]) {
-      speak(`Creating ${element} with color ${elementArr[1]}`)
-  }
-  else {
-    speak(`Creating ${element}`)
-  }
-
-  const api_component = getComponent(element)
-
-  alert(api_component)
-
-  // if ((element == 'box')) {
-  wrapperChildren.add(api_component)
-  // }
-  // else if ((element == 'img')) {
-  //   wrapperChildren.add(`<img class="${bootstrapColor} text-center" src="#" alt="image">`)
-  // }
-  // else if ((element == 'div')) {
-  //   wrapperChildren.add(`<div class="${bootstrapColor} text-center">${text}</div>`)
-  // }
-  // else if ((element == 'carousel')) {
-  //   editor.addComponents(`<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  //     <ol class="carousel-indicators">
-  //       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-  //       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-  //       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  //     </ol>
-  //     <div class="carousel-inner">
-  //       <div class="carousel-item active">
-  //         <img class="d-block w-100" src="https://www.imgacademy.com/sites/default/files/homepage-hero-2019-q1-edited-tennis-bg.jpg" width='300px' alt="First slide">
-  //       </div>
-  //       <div class="carousel-item">
-  //         <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr-n2KPCED2aXXmHhmNCdBvhc7KIuebMNxLaKVZ0k6Cq5umXuA&s"  width='300px' alt="Second slide">
-  //       </div>
-  //       <div class="carousel-item">
-  //         <img class="d-block w-100" src="..." alt="Third slide">
-  //       </div>
-  //     </div>
-  //     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-  //       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  //       <span class="sr-only">Previous</span>
-  //     </a>
-  //     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-  //       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  //       <span class="sr-only">Next</span>
-  //     </a>
-  //   </div>`);
-  // }
-
-}
-
-
-function remove(elementArr) {
-  var element = elementArr[0]
-  const text = elementArr[2]
-  var elementExist = true;
-
-  console.log(`Removing ${element}`)
-
-  speak(`Removing ${element} tag`)
-
-  // TODO:
-  // change for loop to get one element only then remove
-  for (var i=0; i< wrapperChildren.models.length; i++) {
-    var model = wrapperChildren.models[i]
-    if ((element == model.attributes.tagName) || (elementArr[0] == model.attributes.type)) {
-      wrapperChildren.remove(model);
-    }
-    else {
-      elementExist = false
-    }
-  }
-
-  if (elementExist == false) {
-    speak(`There is no ${element} to remove`)
-  }
-}
-
-
-
-console.log(wrapperChildren.models[1].attributes)
+// console.log(wrapperChildren.models[1].attributes)
 
 
 // to get tagName
@@ -261,19 +81,6 @@ console.log(wrapperChildren.models[1].attributes)
 
 
 
-function showProgressBar(onOff) {
-  if (onOff == true) {
-    voiceMessage.innerHTML = 'Voice Activated'
-    document.getElementById("progress").style.display = "block";
-    setInterval(loop, 5000);
-  }
-  else {
-    voiceMessage.innerHTML = 'Click to activate'
-    circle.animate(0);
-    document.getElementById("progress").style.display = "None";
-
-  }
-}
 
 function includes(object, arr) {
   arr.forEach(element => {
@@ -286,7 +93,4 @@ function includes(object, arr) {
 
 
 
-// speak a message to user
-function speak(message) {
-    speechSynthesis.speak(new SpeechSynthesisUtterance(message));
-}
+
