@@ -17,13 +17,10 @@ icon.addEventListener('click', () => {
   dictate();
 
   // ...
-    clearInterval(suggestions)
+    
 });
 
 
-
-
-// suggestedComponent()
 
 
 const dictate = () => {
@@ -32,7 +29,7 @@ const dictate = () => {
       showProgressBar(false)
   
       const speechToText = event.results[0][0].transcript;
-      voiceMessage.innerHTML = speechToText
+      voiceMessage.innerHTML = '"'+speechToText+'"'
   
       // element params
       var color = '';
@@ -69,8 +66,6 @@ const dictate = () => {
         else if (speechCommands[i].toLowerCase() in elementsDic) {
           elementName = elementsDic[speechCommands[i]]
         }
-
-  
       }
   
       // get function name from string
@@ -84,7 +79,6 @@ const dictate = () => {
     recognition.onstart = function() {
       showProgressBar(true)
       // suggestedComponent()
-      // suggestions()
     }
   
     recognition.onspeechend = function() {
@@ -93,6 +87,8 @@ const dictate = () => {
   
     recognition.speechstart = function() {
       showProgressBar(true)
+      voiceMessage.innerHTML = 'Speeking...'
+
     }
   
     recognition.onend = function() {
@@ -123,16 +119,20 @@ function loop(cb) {
 
 function showProgressBar(onOff) {
     if (onOff == true) {
-        // voiceMessage.innerHTML = 'Voice Activated'
+        clearInterval(suggestions)
         document.getElementById("progress").style.display = "block";
         setInterval(loop, 5000);
-    }
+        
+    } 
     else {
-        // voiceMessage.innerHTML = 'Click to activate'
         circle.animate(0);
         document.getElementById("progress").style.display = "None";
-        // suggestions()
-    }
+        setTimeout(function(){ 
+          suggestions = setInterval(suggestedComponent, 3000);
+        }, 3000);
+
+        
+      }
 }
 
 

@@ -23,14 +23,30 @@
     </style>
   </head>
   <body>
-      <div id="mydiv">
-          <div id="mydivheader"><img src="https://static.thenounproject.com/png/581820-200.png" width="20px" height="auto" alt=""></div>
-          <div id="voice-box">
-              <div class="text-box" contenteditable="true"></div>
-              <label id="voice_message">Say a command</label>
-              <div class="progress" id="progress"></div>
-              <i class="fa fa-microphone mic" id="mic"></i>
-            </div>
+    <div id="mydiv">
+        <div id="mydivheader"><img src="https://static.thenounproject.com/png/581820-200.png" width="20px" height="auto" alt=""></div>
+        <div id="voice-box">
+            <div class="text-box" contenteditable="true"></div>
+            <label id="voice_message">Say a command</label>
+            <div class="progress" id="progress"></div>
+            <i class="fa fa-microphone mic" id="mic"></i>
+          </div>
+    </div>
+
+    <div class="vertical-center hide" id="show-components">
+        <div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal">
+          <div class="Center-Content">
+            <h4 class="Title">List of components</h4>
+      
+            <ul id="components-list">
+              <!-- <li>component will be here</li> -->
+            </ul>
+      
+            <p><a href="#" class="Shaw-Button trigger-Resize">Resize Me!</a></p>
+      
+            <p><a href="#" onclick="hideListComponents()" class="Shaw-Button toggle-Modal">Close Modal</a></p>
+          </div>
+        </div>
       </div>
   
     <div id="gjs" style="height:0px; overflow:hidden">
@@ -137,6 +153,8 @@
         }
 
       </style>  
+
+
   </div>
 
     

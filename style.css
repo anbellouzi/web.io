@@ -127,3 +127,30 @@ body {
   
   color: #fff;
 }
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+  
+  z-index: 9;
+  background-color: white;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  /* left: 0; */
+  right: 10px;
+  width: auto;
+  /* margin: auto; */
+}
+
+.hide {
+  display: none;
+  visibility: hidden;
+}
+
+.show {
+  display: block;
+  visibility: visible;
+}

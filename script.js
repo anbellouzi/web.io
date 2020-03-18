@@ -2,17 +2,17 @@
 include('./modules/voice-recognition.js');
 // import bootstrap api ↑↑↑↑↑↑↑↑
 include('./modules/bootstrap-api.js');
-// import create command ↑↑↑↑↑↑↑↑
+// import create command 
 include('./modules/create-command.js');
-// import remove command ↑↑↑↑↑↑↑↑
+// import remove command 
 include('./modules/remove-command.js');
-// import add component to canvas ↑↑↑↑↑↑↑↑
+// import add component to canvas 
 include('./modules/add-component.js');
-// import add component to canvas ↑↑↑↑↑↑↑↑
-include('./modules/components.js');
-// import add component to canvas ↑↑↑↑↑↑↑↑
+// import add component to canvas 
 include('./modules/commands.js');
-// import draggable feature for mic ↑↑↑↑↑↑↑↑
+// import add component to canvas 
+include('./modules/components.js');
+// import draggable feature for mic 
 include('./modules/draggable.js');
 
 
