@@ -37,6 +37,7 @@ const dictate = () => {
   
       // Extract element params from speech list
       for(var i=0; i<speechCommands.length; i++) {
+
   
         // check if there is a color
         if (speechCommands[i].toLowerCase() in colorsDic) {

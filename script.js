@@ -2,7 +2,7 @@ const colorsDic = {'red': 'text-danger', 'white': 'text-white', 'black': 'text-d
 // commandsDic: {command: functionName}
 const commandsDic = {'create': 'create', 'add': 'create', 'remove': 'remove', 'delete': 'remove'}
 // commandsDic: {element: tagName}
-const elementsDic = {'paragraph': 'p', 'image': 'img', 'box': 'div', 'text': 'p', 'carousel': 'carousel', 'image list': 'carousel', 'navbar': 'navbar', 'navigation': 'navbar'}
+const elementsDic = {'container fluid': 'container fluid', 'container': 'container', 'navbar': 'navbar', 'threeColumn': 'three column', 'alert': 'alert', 'badge': 'h1 badge', 'notification': 'notification', 'link': 'link', 'breadcrumb': 'breadcrumb', 'button': 'button', 'tag': 'tag', 'outline': 'outline', 'group': 'group'}
 
 var voiceMessage = document.getElementById('voice_message')
 
@@ -27,6 +27,8 @@ include('./modules/bootstrap-api.js');
 include('./modules/create-command.js');
 // import remove command ↑↑↑↑↑↑↑↑
 include('./modules/remove-command.js');
+// import add component to canvas ↑↑↑↑↑↑↑↑
+include('./modules/add-component.js');
 
 
 // web builder  code

@@ -10,15 +10,8 @@ function create(elementArr) {
       speak(`Creating ${element}`)
     }
     
-
     // this should return html code from bootstrap api
-    const api_component = getComponent(element)
-  
-    if (api_component == "none") {
-        speak(`${element} was not found inside bootstrap a.p.i`)
-    }
-    else {
-        wrapperChildren.add(api_component)
-
-    }
+    getComponent(element)
+    
+    
   }
