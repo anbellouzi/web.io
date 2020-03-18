@@ -1,15 +1,25 @@
-const colorsDic = {'red': 'text-danger', 'white': 'text-white', 'black': 'text-dark', 'blue': 'text-primary', 'yellow': true, 'grey': 'text-muted', 'gray': 'text-secondary', 'green': 'text-success', 'light blue': 'text-info', 'light white': 'text-light'}
-// commandsDic: {command: functionName}
-const commandsDic = {'create': 'create', 'add': 'create', 'remove': 'remove', 'delete': 'remove'}
-// commandsDic: {element: tagName}
-const elementsDic = {'alert primary': 'alert primary', 'alert secondary': 'alert secondary', 'alert success': 'alert success', 'container fluid': 'container fluid', 'container': 'container', 'navbar': 'navbar', 
-                  'three column': 'three column', 'badge': 'h1 badge', 'notification': 'notification', 
-                  'link': 'link', 'breadcrumb': 'breadcrumb', 'button': 'button', 'tag': 'tag', 'outline': 'outline', 
-                  'group': 'button-group', 'toolbar': 'toolbar', 'nested': 'button-group-nested', 'vertical': 'button-group-vertical',
-                   'card': 'card', 'carousel': 'carousel', 'collapse': 'collapse', 'accordion': 'accordion', 'drop': 'dropdown', 
-                   'form': 'form', 'input': 'input group', 'jumbo': 'jumbotron', 'list': 'list group', 'modal': 'modal', 'demo': 'demo', 
-                   'popover': 'modal dialog centered', 'nav': 'nav', 'navbar': 'navbar', 'pagination': 'pagination', 'progress bar': 'progress bar',
-                  'scrollspy': 'scroll spy', 'menu': 'menu', 'footer': 'footer' }
+// import voice recognition api ↑↑↑↑↑↑↑↑
+include('./modules/voice-recognition.js');
+// import bootstrap api ↑↑↑↑↑↑↑↑
+include('./modules/bootstrap-api.js');
+// import create command ↑↑↑↑↑↑↑↑
+include('./modules/create-command.js');
+// import remove command ↑↑↑↑↑↑↑↑
+include('./modules/remove-command.js');
+// import add component to canvas ↑↑↑↑↑↑↑↑
+include('./modules/add-component.js');
+// import add component to canvas ↑↑↑↑↑↑↑↑
+include('./modules/components.js');
+// import add component to canvas ↑↑↑↑↑↑↑↑
+include('./modules/commands.js');
+// import draggable feature for mic ↑↑↑↑↑↑↑↑
+include('./modules/draggable.js');
+
+
+
+
+
+
 
 var voiceMessage = document.getElementById('voice_message')
 
@@ -26,16 +36,7 @@ function include(file) {
   
 }
 
-// import voice recognition api ↑↑↑↑↑↑↑↑
-include('./modules/voice-recognition.js');
-// import bootstrap api ↑↑↑↑↑↑↑↑
-include('./modules/bootstrap-api.js');
-// import create command ↑↑↑↑↑↑↑↑
-include('./modules/create-command.js');
-// import remove command ↑↑↑↑↑↑↑↑
-include('./modules/remove-command.js');
-// import add component to canvas ↑↑↑↑↑↑↑↑
-include('./modules/add-component.js');
+
 
 
 // web builder  code

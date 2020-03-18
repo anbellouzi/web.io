@@ -23,7 +23,16 @@
     </style>
   </head>
   <body>
-
+      <div id="mydiv">
+          <div id="mydivheader"><img src="https://static.thenounproject.com/png/581820-200.png" width="20px" height="auto" alt=""></div>
+          <div id="voice-box">
+              <div class="text-box" contenteditable="true"></div>
+              <label id="voice_message">Say a command</label>
+              <div class="progress" id="progress"></div>
+              <i class="fa fa-microphone mic" id="mic"></i>
+            </div>
+      </div>
+  
     <div id="gjs" style="height:0px; overflow:hidden">
       <div class="panel">
         <h1 class="welcome">Welcome to</h1>
@@ -127,54 +136,10 @@
           color: #9CF;
         }
 
-      </style>
-    </div>
+      </style>  
+  </div>
 
-
-    <div class="container" >
-      <div class="text-box" contenteditable="true"></div>
-      <label id="voice_message">Say a command</label>
-      <div class="progress" id="progress"></div>
-      <i class="fa fa-microphone mic" id="mic"></i>
-
-    <style>
-
-      /* style for mic */
-      .container {
-        position: absolute;
-        width: 84%;
-        bottom: 10px;
-        margin: auto;
-        z-index: 1;
-        text-align: center;
-      }
-      .text-box {
-        max-height: 70vh;
-        overflow: scroll;
-      }
-      .text-box:focus {
-        outline: none;
-      }
-      .text-box p {
-        margin: 0px !important;
-      }
-      .mic {
-        width: 2rem;
-        height: 2rem;
-        background: #1e2440;
-        color: white;
-        align-items: center;
-        display: flex !important;
-        justify-content: center;
-        cursor: pointer;
-        margin: auto;
-        margin-top: 1rem;
-        border-radius: 50%;
-      }
-
-      /* end style for mic */
-      </style>
-    </div>
+    
 
     <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
     <script src="script.js"></script>

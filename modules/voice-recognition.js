@@ -11,13 +11,20 @@ let container = document.querySelector('.text-box');
 container.appendChild(paragraph);
 const sound = document.querySelector('.sound');
 
+var suggestions = setInterval(suggestedComponent, 3000);
+
 icon.addEventListener('click', () => {
   dictate();
 
   // ...
-//   console.log(getComponent('div'))
-
+    clearInterval(suggestions)
 });
+
+
+
+
+// suggestedComponent()
+
 
 const dictate = () => {
     recognition.start();
@@ -75,20 +82,30 @@ const dictate = () => {
     }
   
     recognition.onstart = function() {
-      // showProgressBar(true)
+      showProgressBar(true)
+      // suggestedComponent()
+      // suggestions()
     }
   
     recognition.onspeechend = function() {
-      // showProgressBar(false)
+      showProgressBar(false)
     }
   
     recognition.speechstart = function() {
-      // showProgressBar(true)
+      showProgressBar(true)
     }
   
     recognition.onend = function() {
-      // showProgressBar(false)
+      showProgressBar(false)
     }
+}
+
+
+
+function suggestedComponent() {
+    var allElements = Object.keys(elementsDic);
+    var suggestion = allElements[Math.floor(Math.random() * allElements.length)]
+    voiceMessage.innerHTML = 'Say "Create '+suggestion+'"'
 }
 
 // circle around mic icon
@@ -106,15 +123,15 @@ function loop(cb) {
 
 function showProgressBar(onOff) {
     if (onOff == true) {
-        voiceMessage.innerHTML = 'Voice Activated'
+        // voiceMessage.innerHTML = 'Voice Activated'
         document.getElementById("progress").style.display = "block";
         setInterval(loop, 5000);
     }
     else {
-        voiceMessage.innerHTML = 'Click to activate'
+        // voiceMessage.innerHTML = 'Click to activate'
         circle.animate(0);
         document.getElementById("progress").style.display = "None";
-
+        // suggestions()
     }
 }
 
@@ -124,3 +141,4 @@ function showProgressBar(onOff) {
 function speak(message) {
     speechSynthesis.speak(new SpeechSynthesisUtterance(message));
 }
+
