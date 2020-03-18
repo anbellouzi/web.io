@@ -46,11 +46,23 @@ const dictate = () => {
         // check if there is function name
         else if (speechCommands[i].toLowerCase() in commandsDic) {
           functionName = commandsDic[speechCommands[i]]
+          if (functionName == 'create') {
+            var tempElement = speechCommands.slice(1, speechCommands.length).join(" ");
+            if (tempElement.toLowerCase() in elementsDic) {
+              elementName = tempElement
+              break;
+            }
+            else {
+
+            }
+
+          }
         }
         // check if there is an element name
         else if (speechCommands[i].toLowerCase() in elementsDic) {
           elementName = elementsDic[speechCommands[i]]
         }
+
   
       }
   
@@ -63,19 +75,19 @@ const dictate = () => {
     }
   
     recognition.onstart = function() {
-      showProgressBar(true)
+      // showProgressBar(true)
     }
   
     recognition.onspeechend = function() {
-      showProgressBar(false)
+      // showProgressBar(false)
     }
   
     recognition.speechstart = function() {
-      showProgressBar(true)
+      // showProgressBar(true)
     }
   
     recognition.onend = function() {
-      showProgressBar(false)
+      // showProgressBar(false)
     }
 }
 

@@ -2,7 +2,14 @@ const colorsDic = {'red': 'text-danger', 'white': 'text-white', 'black': 'text-d
 // commandsDic: {command: functionName}
 const commandsDic = {'create': 'create', 'add': 'create', 'remove': 'remove', 'delete': 'remove'}
 // commandsDic: {element: tagName}
-const elementsDic = {'container fluid': 'container fluid', 'container': 'container', 'navbar': 'navbar', 'threeColumn': 'three column', 'alert': 'alert', 'badge': 'h1 badge', 'notification': 'notification', 'link': 'link', 'breadcrumb': 'breadcrumb', 'button': 'button', 'tag': 'tag', 'outline': 'outline', 'group': 'group'}
+const elementsDic = {'alert primary': 'alert primary', 'alert secondary': 'alert secondary', 'alert success': 'alert success', 'container fluid': 'container fluid', 'container': 'container', 'navbar': 'navbar', 
+                  'three column': 'three column', 'badge': 'h1 badge', 'notification': 'notification', 
+                  'link': 'link', 'breadcrumb': 'breadcrumb', 'button': 'button', 'tag': 'tag', 'outline': 'outline', 
+                  'group': 'button-group', 'toolbar': 'toolbar', 'nested': 'button-group-nested', 'vertical': 'button-group-vertical',
+                   'card': 'card', 'carousel': 'carousel', 'collapse': 'collapse', 'accordion': 'accordion', 'drop': 'dropdown', 
+                   'form': 'form', 'input': 'input group', 'jumbo': 'jumbotron', 'list': 'list group', 'modal': 'modal', 'demo': 'demo', 
+                   'popover': 'modal dialog centered', 'nav': 'nav', 'navbar': 'navbar', 'pagination': 'pagination', 'progress bar': 'progress bar',
+                  'scrollspy': 'scroll spy', 'menu': 'menu', 'footer': 'footer' }
 
 var voiceMessage = document.getElementById('voice_message')
 
