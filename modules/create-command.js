@@ -13,5 +13,6 @@ function create(elementArr) {
     // this should return html code from bootstrap api
     getComponent(element)
     
+    dictate()
     
   }
