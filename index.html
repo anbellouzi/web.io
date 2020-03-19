@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/grapesjs"></script>
     <script src="dist/grapesjs-preset-webpage.min.js"></script>
     <!-- <script src="path/to/grapesjs-navbar.min.js"></script> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
     <link rel="stylesheet" href="style.css">
@@ -30,24 +31,27 @@
             <label id="voice_message">Say a command</label>
             <div class="progress" id="progress"></div>
             <i class="fa fa-microphone mic" id="mic"></i>
-          </div>
+            <br>
+            <div class="btn-group float-left">
+              <button type="button" class="btn btn-secondary  dropdown-toggle" onclick="showAllComponents()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Components
+                </button>
+              <div class="dropdown-menu " style="background: white;color: black;">
+                  <!-- <div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal" style="height:100%;overflow:scroll;"> -->
+                      <div class="Center-Content" style="height:200px;overflow:scroll;">
+                        
+                        <ul id="components-list" class="list-group">
+                          
+                        </ul>
+
+                      </div>
+                    <!-- </div> -->
+              </div>
+            </div>
+            
+        </div>
     </div>
 
-    <div class="vertical-center hide" id="show-components">
-        <div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal">
-          <div class="Center-Content">
-            <h4 class="Title">List of components</h4>
-      
-            <ul id="components-list">
-              <!-- <li>component will be here</li> -->
-            </ul>
-      
-            <p><a href="#" class="Shaw-Button trigger-Resize">Resize Me!</a></p>
-      
-            <p><a href="#" onclick="hideListComponents()" class="Shaw-Button toggle-Modal">Close Modal</a></p>
-          </div>
-        </div>
-      </div>
   
     <div id="gjs" style="height:0px; overflow:hidden">
       <div class="panel">
@@ -58,6 +62,9 @@
         <div class="description">
           Click on mic and say any command from the menu on the right
         </div>
+
+        <!-- Example single danger button -->
+
       </div>
       <style>
         .panel {
@@ -164,5 +171,9 @@
     <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet"/>
     <script src="https://unpkg.com/grapesjs"></script>
     <script src="dist/grapesjs-plugin-bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>

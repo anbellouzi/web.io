@@ -20,28 +20,50 @@ function setElementDic(components) {
 
 function showAllComponents() {
     speak("Here is a list of components from bootstrap")
-    document.getElementById("show-components").classList.remove("hide");
-    document.getElementById("show-components").classList.add("show");
+    // document.getElementById("show-components").classList.remove("hide");
+    // document.getElementById("show-components").classList.add("show");
 
     var ul = document.getElementById("components-list");
 
+    
+    var sorted = [];
+    for(var key in elementsDic) {
+        sorted[sorted.length] = key;
+    }
+    
+    var elementsArray = sorted.sort();
+    
     ul.innerHTML = ""
 
-    console.log(elementsDic)
-
-    Object.keys(elementsDic).forEach(function(key) {
+    for(var i=0; i<elementsArray.length; i++) {
+        var elementKey = elementsArray[i]
         var li = document.createElement("li");
-        li.appendChild(document.createTextNode(key));
+        var a = document.createElement('a');  
+        var text = document.createTextNode(elementKey); 
+        a.appendChild(text);  
+        a.href = "#";
+        a.id = elementKey;
+        a.title = elementKey;  
+        console.log(elementKey)
+
+        a.addEventListener("click", function(){ 
+            addComponent(elementsDic[this.id], this.id)
+
+        });
+
+        li.appendChild(a);
         ul.appendChild(li);     
 
-    });
+    };
 }
 
 function hideListComponents() {
-    speak("list of components is closed!")
-    document.getElementById("show-components").classList.remove("show");
-    document.getElementById("show-components").classList.add("hide");
+    // speak("list of components is closed!")
+    // document.getElementById("show-components").classList.remove("show");
+    // document.getElementById("show-components").classList.add("hide");
 }
+
+
 
 
 

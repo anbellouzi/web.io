@@ -91,8 +91,10 @@ body {
     left: 0;
     right: 0;
     margin: 0 auto;
-    bottom: -9px;
+    bottom: 52px;
+    background: transparent;
 }
+
 .progress > svg {
     height: 80%;
     display: block;
@@ -133,7 +135,7 @@ body {
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-
+  height: 350px;
   
   z-index: 9;
   background-color: white;
@@ -153,4 +155,24 @@ body {
 .show {
   display: block;
   visibility: visible;
+}
+
+#components-list li {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  text-align: left;
+  padding-right: 5px;
+  border-bottom: 1px solid black;
+  padding: 5px;
+}
+
+#components-list li a {
+
+  color: black;
+  font: bold;
+  font-weight: 400;
+  padding: 5px;
+  
+  
 }
