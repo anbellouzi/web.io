@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>web.io</title>
+
+    <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
+    <link href="dist/grapesjs-preset-webpage.min.css" rel="stylesheet">
+    <!-- <script src="//feather.aviary.com/imaging/v3/editor.js"></script> -->
+    <script src="https://static.filestackapi.com/v3/filestack-0.1.10.js"></script>
+    <script src="https://unpkg.com/grapesjs"></script>
+    <script src="dist/grapesjs-preset-webpage.min.js"></script>
+    <!-- <script src="path/to/grapesjs-navbar.min.js"></script> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="https://i.imgur.com/wOXjgvD.png"/>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mydiv">
+        <div id="mydivheader"><img src="https://static.thenounproject.com/png/581820-200.png" width="20px" height="auto" alt=""></div>
+        <div id="voice-box">
+            <div class="text-box" contenteditable="true"></div>
+            <label id="voice_message">Say a command</label>
+            <div class="progress" id="progress"></div>
+            <i class="fa fa-microphone mic" id="mic"></i>
+            <br>
+            <div class="btn-group float-left">
+              <button type="button" class="btn btn-secondary  dropdown-toggle" onclick="showAllComponents()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-list" aria-hidden="true"></i>
+                </button>
+              <div class="dropdown-menu" style="background: white;color: black;">
+                  <!-- <div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal" style="height:100%;overflow:scroll;"> -->
+                      <div class="Center-Content" style="height:200px;overflow:scroll;">
+                        
+                        <ul id="components-list" class="list-group">
+                          
+                        </ul>
+
+                      </div>
+                    <!-- </div> -->
+              </div>
+            </div>
+            
+        </div>
+    </div>
+
+  
+    <div id="gjs" style="height:0px; overflow:hidden">
+      <div class="panel">
+        <h1 class="welcome">Welcome to</h1>
+        <div class="big-title">
+          <span>Web.io</span>
+        </div>
+        <div class="description">
+          Click on mic and say any command from the menu on the right
+        </div>
+
+        <!-- Example single danger button -->
+
+      </div>
+      <style>
+        .panel {
+          width: 90%;
+          max-width: 700px;
+          border-radius: 3px;
+          padding: 30px 20px;
+          margin: 150px auto 0px;
+          background-color: #d983a6;
+          box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.25);
+          color:rgba(255,255,255,0.75);
+          font: caption;
+          font-weight: 100;
+        }
+
+        .welcome {
+          text-align: center;
+          font-weight: 100;
+          margin: 0px;
+        }
+
+        .logo {
+          width: 70px;
+          height: 70px;
+          vertical-align: middle;
+        }
+
+        .logo path {
+          pointer-events: none;
+          fill: none;
+          stroke-linecap: round;
+          stroke-width: 7;
+          stroke: #fff
+        }
+
+        .big-title {
+          text-align: center;
+          font-size: 3.5rem;
+          margin: 15px 0;
+        }
+
+        .description {
+          text-align: justify;
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+
+        /********** FLOATING BOX ***********/
+        .login .pane {
+          position: fixed;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          margin: auto;
+          width: 300px;
+          height: 250px;
+
+          background: #f0f0fd;
+          background: rgba(240, 240, 253, 0.90);
+          padding: 22px 32px;
+          -moz-border-radius: 8px;
+          -webkit-border-radius: 8px;
+          border-radius: 8px;
+          -moz-box-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+          -webkit-box-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+          -box-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+        }
+
+        .login .misc {
+          position: absolute;
+          top: 103%;
+          left: 0;
+          width: 100%;
+        }
+
+        .login footer {
+          background: #555;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          top: 50%;
+        }
+
+        .login .misc,
+        .login .misc a {
+          color: white;
+        }
+
+        .login footer a:hover {
+          color: #9CF;
+        }
+
+      </style>  
+
+
+  </div>
+
+    
+
+    <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
+    <script src="script.js"></script>
+    <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/grapesjs"></script>
+    <script src="dist/grapesjs-plugin-bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
