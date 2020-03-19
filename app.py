@@ -15,13 +15,14 @@ def home_route():
     return render_template('index.html', tweet=tweet)
 
 
-
 @app.route('/builder')
 def builder_route():
     tweet = "htfvhvgv"
     return render_template('builder.html')
 
-
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 
 if __name__ == '__main__':

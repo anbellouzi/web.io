@@ -37,6 +37,8 @@
                   <li><a class="icon icon-sm icon-bordered link-default mdi mdi-behance" href="#"></a></li>
                   <li><a class="icon icon-sm icon-bordered link-default mdi mdi-facebook" href="#"></a></li>
                   <li><a class="icon icon-sm icon-bordered link-default mdi mdi-instagram" href="#"></a></li>
+                  <!-- <li><p class="fa fa-github" href="github.com" target="_blank"></p></li>
+                  <li><img src="https://imgur.com/bI35Ujn" alt="github"/></li> -->
                 </ul>
               </div>
               <div class="rd-navbar-main-outer">
@@ -59,8 +61,6 @@
                       <li class="rd-nav-item"><a class="rd-nav-link" href="/builder" target="_blank">Builder</a>
                       </li>
                       <li class="rd-nav-item"><a class="rd-nav-link" href="#features">Features</a>
-                      </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="/login">Login</a>
                       </li>
                       <li class="rd-nav-item"><a class="rd-nav-link" href="#contacts">Contact Us</a>
                       </li>
@@ -120,7 +120,7 @@
                 <div class="col-sm-6 col-md-4 wow fadeInRight">
                   <h5>Website Builder</h5>
                   <ul class="list-xs list-modern">
-                      <li class="link-item link-no-color"><p>Fully functional <a href="builder.html" target="_blank">website builder</a></p></li>
+                    <li class="link-item link-no-color"><p>Fully functional <a href="builder.html" target="_blank">website builder</a></p></li>
                     <li class="link-item link-no-color"><p>Implemented Drag-N-Drop feature</p></li>
                   </ul>
                 </div>
@@ -134,7 +134,7 @@
                 <div class="col-sm-6 col-md-4 wow fadeInRight">
                   <h5>Bootstrap-API</h5>
                   <ul class="list-xs list-modern">
-                      <li class="link-item link-no-color"><p>Custom-built <a href="https://github.com/anbellouzi/Bootstrap-API" target="_blank">Bootstrap API</a></p></li>
+                    <li class="link-item link-no-color"><p>Custom-built <a href="https://github.com/anbellouzi/Bootstrap-API" target="_blank">Bootstrap API</a></p></li>
                     <li class="link-item link-no-color"><p>Contains all bootstrap components</p></li>
                   </ul>
                 </div>
@@ -186,8 +186,8 @@
                   <div class="blurb-minimal-icon linearicons-bandages"></div>
                 </div>
                 <div class="unit-body">
-                    <h5 class="blurb-minimal-title">Speech-Recognition</h5>
-                    <p class="blurb-minimal-exeption box-1">We use new and innovative technologies in our <a href="builder.html" target="_blank">Builder</a>.</p>
+                  <h5 class="blurb-minimal-title">Speech-Recognition</h5>
+                  <p class="blurb-minimal-exeption box-1">We use new and innovative technologies in our <a href="builder.html" target="_blank">Builder</a>.</p>
                 </div>
               </div>
             </div>
@@ -198,8 +198,8 @@
                   <div class="blurb-minimal-icon linearicons-beaker"></div>
                 </div>
                 <div class="unit-body">
-                    <h5 class="blurb-minimal-title">Unique Approach</h5>
-                    <p class="blurb-minimal-exeption box-1">Our custom-built <a href="https://github.com/anbellouzi/Bootstrap-API" target="_blank">Bootstrap API</a> will build your template faster than ever with the click of a button.</p>
+                  <h5 class="blurb-minimal-title">Unique Approach</h5>
+                  <p class="blurb-minimal-exeption box-1">Our custom-built <a href="https://github.com/anbellouzi/Bootstrap-API" target="_blank">Bootstrap API</a> will build your template faster than ever with the click of a button.</p>
                 </div>
               </div>
             </div>
@@ -240,9 +240,9 @@
             <div class="col-lg-5 col-xl-4">
               <div class="row row-30 row-xxl-55 justify-content-end">
                 <div class="col-sm-6 col-lg-9 col-xl-10 text-lg-right">
-                    <h4 class="font-weight-bold">Quality <br> Code</h4>
-                    <p class="big-text">Our algorithms track component use pattern to let you see commonly used components.</p>
-                    <!-- <p class="big-text">Your website's source code can be downloaded and exported as a zip file, and imported if an edit is needed.</p> -->
+                  <h4 class="font-weight-bold">Quality <br> Code</h4>
+                  <p class="big-text">Our algorithms track component use pattern to let you see commonly used components.</p>
+                  <!-- <p class="big-text">Your website's source code can be downloaded and exported as a zip file, and imported if an edit is needed.</p> -->
                   <div class="divider divider-2 d-none d-lg-block"></div>
                 </div>
                 <div class="col-sm-6 col-lg-8 col-xl-7 counter-box">
@@ -255,9 +255,9 @@
                     </div>
                   </div>
                   <ul class="list-marked list-marked-big">
-                      <li><p style="font-style: italic;">10,000+ lines of code created by users</style></li>
-                      <li><p style="font-style: italic;">25+ projects exported</style></li>
-                      <li><p style="font-style: italic;">4+ new features</style></li>
+                    <li><p style="font-style: italic;">10,000+ lines of code created by users</style></li>
+                    <li><p style="font-style: italic;">25+ projects exported</style></li>
+                    <li><p style="font-style: italic;">4+ new features</style></li>
                   </ul>
                 </div>
               </div>
@@ -330,7 +330,8 @@
         </div>
         <div class="container">
           <h4 class="font-weight-bold">Get in touch</h4>
-          <p class="big">Feel free to contact us to find out more about our prices and services. <br></p>
+          <p class="big">Feel free to contact us to find out more about our prices and services. <br class="d-none d-lg-inline">We are always ready to answer your questions.</p>
+          <!-- RD Mailform-->
           <form class="rd-form rd-mailform form-boxed" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
             <div class="row row-50">
               <div class="col-lg-4">
@@ -397,7 +398,7 @@
               </dl>
               <dl class="list-terms-custom">
                 <dt>Mail.</dt>
-                <dd><a class="link-default" href="mailto:info@web.io">info@web.io</a></dd>
+                <dd><a class="link-default" href="mailto:vladyslavn@yahoo.com">info@web.io</a></dd>
               </dl>
               <ul class="list-inline list-inline-sm">
                 <li><a class="icon icon-sm icon-gray-filled icon-circle mdi mdi-facebook" href="#"></a></li>
@@ -431,8 +432,8 @@
             <div class="col-lg-5 col-xl-6">
               <ul class="list-inline list-inline-lg text-uppercase">
                 <li><a class="small-2 font-weight-regular" href="#">About us</a></li>
+                <li><a class="small-2 font-weight-regular" href="builder.html">builder</a></li>
                 <li><a class="small-2 font-weight-regular" href="features">Features</a></li>
-                <li><a class="small-2 font-weight-regular" href="/login">Login</a></li>
               </ul>
             </div>
             <div class="col-lg-3 text-lg-right"></div>
@@ -443,5 +444,14 @@
     <div class="snackbars" id="form-output-global"></div>
     <script src="../js/core.min.js"></script>
     <script src="../js/script.js"></script>
+    <!-- coded by Starlight-->
+    
+    
+    
+    
+
+
+
+
   </body>
 </html>
