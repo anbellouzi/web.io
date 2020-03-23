@@ -44,7 +44,7 @@ function showAllComponents() {
         a.href = "#";
         a.id = elementKey;
         a.title = elementKey;  
-        console.log(elementKey)
+
 
         a.addEventListener("click", function(){ 
             addComponent(elementsDic[this.id], this.id)
