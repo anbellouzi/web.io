@@ -133,29 +133,33 @@ function showProgressBar(onOff) {
       }
 }
 
-
+var voiceMessage = new SpeechSynthesisUtterance();
 
 // speak a message to user
 function speak(message) {
-  let voiceMessage = new SpeechSynthesisUtterance ();
-  let voices = synth.getVoices ();
+  
+  // let voices = synth.getVoices ();
 
-  for (let voice of voices) {
-    if ((voice.lang === 'en-AU') && (voice.name === 'Karen')) {
-      voiceMessage.voice = voice;
-    }
-  }
+  // for (let voice of voices) {
+  //   if ((voice.lang === 'en-AU') && (voice.name === 'Karen')) {
+  //     voiceMessage.voice = voice;
+  //   }
+  // }
 
   voiceMessage.text = message;
 
   speechSynthesis.speak(voiceMessage);
 }
 
+
+
 function showAllVoices() {
   let voices = synth.getVoices ();
 
+
   var ul = document.getElementById("voices-list");
-  
+  ul.innerHTML = ""
+
   for (let voice of voices) {
     var li = document.createElement("li");
     var a = document.createElement('a');  
@@ -167,13 +171,29 @@ function showAllVoices() {
     a.title = voice.name; 
 
     a.addEventListener("click", function(){ 
-      // addComponent(voices[this.id], this.id)
-      alert(this.id)
+      setVoice(this.id)
     });
 
     li.appendChild(a)
     ul.appendChild(li)
 
   }
+}
 
+function setVoice(newVoice) {
+  
+  let voices = synth.getVoices ();
+  let voiceName = '';
+
+  for (let voice of voices) {
+    voiceName = voice.name
+
+
+    if (voiceName == newVoice) {
+      voiceMessage.voice = voice;
+      speak(`Hi! this is ${newVoice}.`);
+    }
+  }
+
+  
 }

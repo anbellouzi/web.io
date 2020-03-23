@@ -157,7 +157,7 @@ body {
   visibility: visible;
 }
 
-#components-list li {
+#components-list li, #voices-list li {
   list-style: none;
   margin-left: 0;
   padding-left: 0;
@@ -167,7 +167,7 @@ body {
   padding: 5px;
 }
 
-#components-list li a {
+#voices-list li a {
 
   color: black;
   font: bold;
