@@ -4,7 +4,7 @@ function create(elementArr) {
     const text = elementArr[2]
   
     if (elementArr[1]) {
-        speak(`Creating ${element} with color ${elementArr[1]}`)
+        // speak(`Creating ${element} with color ${elementArr[1]}`)
     }
     else {
       speak(`Creating ${element}`)
@@ -13,6 +13,6 @@ function create(elementArr) {
     // this should return html code from bootstrap api
     getComponent(element)
     
-    dictate()
+    // dictate()
     
   }
