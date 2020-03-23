@@ -21,8 +21,6 @@ icon.addEventListener('click', () => {
 });
 
 
-
-
 const dictate = () => {
     recognition.start();
     recognition.onresult = (event) => {
@@ -139,6 +137,43 @@ function showProgressBar(onOff) {
 
 // speak a message to user
 function speak(message) {
-    speechSynthesis.speak(new SpeechSynthesisUtterance(message));
+  let voiceMessage = new SpeechSynthesisUtterance ();
+  let voices = synth.getVoices ();
+
+  for (let voice of voices) {
+    if ((voice.lang === 'en-AU') && (voice.name === 'Karen')) {
+      voiceMessage.voice = voice;
+    }
+  }
+
+  voiceMessage.text = message;
+
+  speechSynthesis.speak(voiceMessage);
 }
 
+function showAllVoices() {
+  let voices = synth.getVoices ();
+
+  var ul = document.getElementById("voices-list");
+  
+  for (let voice of voices) {
+    var li = document.createElement("li");
+    var a = document.createElement('a');  
+    var text = document.createTextNode(voice.name); 
+    a.appendChild(text); 
+    
+    a.href = "#";
+    a.id = voice.name;
+    a.title = voice.name; 
+
+    a.addEventListener("click", function(){ 
+      // addComponent(voices[this.id], this.id)
+      alert(this.id)
+    });
+
+    li.appendChild(a)
+    ul.appendChild(li)
+
+  }
+
+}

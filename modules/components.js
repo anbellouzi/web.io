@@ -19,7 +19,6 @@ function setElementDic(components) {
 }
 
 function showAllComponents() {
-    speak("Here is a list of components from bootstrap")
     // document.getElementById("show-components").classList.remove("hide");
     // document.getElementById("show-components").classList.add("show");
 
@@ -44,7 +43,7 @@ function showAllComponents() {
         a.href = "#";
         a.id = elementKey;
         a.title = elementKey;  
-        console.log(elementKey)
+
 
         a.addEventListener("click", function(){ 
             addComponent(elementsDic[this.id], this.id)
