@@ -19,7 +19,6 @@ function setElementDic(components) {
 }
 
 function showAllComponents() {
-    speak("Here is a list of components from bootstrap")
     // document.getElementById("show-components").classList.remove("hide");
     // document.getElementById("show-components").classList.add("show");
 
