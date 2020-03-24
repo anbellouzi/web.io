@@ -33,16 +33,31 @@
             <div class="progress" id="progress"></div>
             <i class="fa fa-microphone mic" id="mic"></i>
             <br>
+           
             <!-- shows list of all components  -->
-            <div class="btn-group ">
+            <div class="btn-group float-left">
               <button type="button" class="btn btn-secondary  dropdown-toggle" onclick="showAllComponents()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-list" aria-hidden="true"></i>
                 </button>
               <div class="dropdown-menu" style="background: white;color: black;">
+                <div class="Center-Content" style="height:300px;overflow:scroll;">
+                  <ul id="components-list" class="list-group">
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- shows voices  -->
+            <div class="btn-group float-left" style="margin-left: 13px;">
+              <button type="button" class="btn btn-secondary  dropdown-toggle" onclick="showAllVoices()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" style="background: white;color: black;">
                   <!-- <div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal" style="height:100%;overflow:scroll;"> -->
-                      <div class="Center-Content" style="height:200px;overflow:scroll;">
+                      <div class="Center-Content" style="height:300px;overflow:scroll;">
                         
-                        <ul id="components-list" class="list-group">
+                        <ul id="voices-list" class="list-group">
                           
                         </ul>
 
@@ -50,19 +65,54 @@
                     <!-- </div> -->
               </div>
             </div>
-            <!-- shows voices  -->
-            <div class="btn-group ">
-              <button type="button" class="btn btn-secondary  dropdown-toggle" onclick="showAllVoices()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-cog" aria-hidden="true"></i>
+
+            <!-- adjust voices  -->
+            <div class="btn-group float-right">
+              <button type="button" class="btn btn-secondary  dropdown-toggle" onclick="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-gear" aria-hidden="true"></i>
               </button>
               <div class="dropdown-menu" style="background: white;color: black;">
-                  <!-- <div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal" style="height:100%;overflow:scroll;"> -->
-                      <div class="Center-Content" style="height:200px;overflow:scroll;">
-                        
+                
+                      <div class="Center-Content" style="height:300px;overflow:scroll;">
                         <ul id="voices-list" class="list-group">
                           
-                        </ul>
+                          <!-- volume section -->
+                          <li>
+                              <div class="row justify-content-center">
+                                <span for="Pitch">Volume</span>
+                              </div>
+                              <div class="d-flex justify-content-center my-4">
+                                  <input id="volumeSlider" class="border-0 ml-2" type="range" step="0.1" min="0" max="1" />
+                                  <span class="font-weight-bold text-primary ml-2 mt-1 volumeValueSpan"></span>
+                              </div>
+                            </li>
 
+
+                          <!-- pitch section -->
+                          <li>
+                            <div class="row justify-content-center">
+                              <span for="Pitch">Pitch</span>
+                            </div>
+                            <div class="d-flex justify-content-center my-4">
+                                <input id="pitchSlider" class="border-0 ml-2" type="range" step="0.1" min="0" max="2" />
+                                <span class="font-weight-bold text-primary ml-2 mt-1 pitchValueSpan"></span>
+                            </div>
+                          </li>
+
+
+                          <!-- rate section -->
+                          <li>
+                              <div class="row justify-content-center">
+                                <span for="Rate">Rate</span>
+                              </div>
+                              <div class="d-flex justify-content-center my-4">
+                                  <input id="rateSlider" class="border-0 ml-2" type="range" step="0.1" min="0" max="10" value="1"/>
+                                  <span class="font-weight-bold text-primary ml-2 mt-1 rateValueSpan"></span>
+                              </div>
+                            </li>
+
+
+                        </ul>
                       </div>
                     <!-- </div> -->
               </div>

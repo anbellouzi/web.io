@@ -197,3 +197,55 @@ function setVoice(newVoice) {
 
   
 }
+
+
+// $(document).ready(function() {
+
+  const pitchValueSpan = $('.pitchValueSpan');
+  const volumeValueSpan = $('.volumeValueSpan');
+  const rateValueSpan = $('.rateValueSpan');
+  const pitchValue = $('#pitchSlider');
+  const volumeValue = $('#volumeSlider');
+  const rateValue = $('#rateSlider');
+  
+  
+  pitchValueSpan.html(pitchValue.val());
+  volumeValueSpan.html(volumeValue.val());
+  rateValueSpan.html(rateValue.val());
+  
+  
+  $("#volumeSlider").change(function(){
+    
+    volumeValueSpan.html(volumeValue.val());
+
+    voiceMessage.volume = volumeValue.val();
+
+    speak(`Volume is at ${volumeValue.val()}`)
+    
+  });
+
+
+  $("#pitchSlider").change(function(){
+    
+    pitchValueSpan.html(pitchValue.val());
+
+    voiceMessage.pitch = pitchValue.val()
+
+    speak(`Pitch is at ${pitchValue.val()}`)
+    
+  });
+
+  $("#rateSlider").change(function(){
+    
+    rateValueSpan.html(rateValue.val());
+
+    voiceMessage.rate = rateValue.val()
+
+    speak(`Rate is at ${rateValue.val()}`)
+    
+  });
+
+
+
+
+// });
