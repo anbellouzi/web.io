@@ -85,7 +85,7 @@ const dictate = () => {
   
     recognition.speechstart = function() {
       showProgressBar(true)
-      voiceMessage.innerHTML = 'Speeking...'
+      voiceMessage.innerHTML = 'Speaking...'
 
     }
   
