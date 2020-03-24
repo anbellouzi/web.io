@@ -137,14 +137,6 @@ var voiceMessage = new SpeechSynthesisUtterance();
 
 // speak a message to user
 function speak(message) {
-  
-  // let voices = synth.getVoices ();
-
-  // for (let voice of voices) {
-  //   if ((voice.lang === 'en-AU') && (voice.name === 'Karen')) {
-  //     voiceMessage.voice = voice;
-  //   }
-  // }
 
   voiceMessage.text = message;
 
@@ -163,7 +155,7 @@ function showAllVoices() {
   for (let voice of voices) {
     var li = document.createElement("li");
     var a = document.createElement('a');  
-    var text = document.createTextNode(voice.name); 
+    var text = document.createTextNode(`${voice.name} | ${voice.lang}`); 
     a.appendChild(text); 
     
     a.href = "#";
