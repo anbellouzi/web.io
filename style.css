@@ -167,12 +167,10 @@ body {
   padding: 5px;
 }
 
-#voices-list li a {
+#voices-list li a, #components-list li a {
 
   color: black;
   font: bold;
   font-weight: 400;
   padding: 5px;
-  
-  
 }
