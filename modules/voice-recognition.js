@@ -131,7 +131,7 @@ function showProgressBar(onOff) {
         circle.animate(0);
         document.getElementById("progress").style.display = "None";
         setTimeout(function(){ 
-          suggestions = setInterval(suggestedComponent, 3000);
+          suggestions = setInterval(suggestedComponent, 1000);
         }, 3000);
 
         
