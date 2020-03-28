@@ -7,7 +7,6 @@ const commandsDic = {'create': 'create', 'add': 'create',
                     }
 
 
-
 const editorCommands = editor.Commands;
 
 

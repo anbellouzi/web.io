@@ -28,8 +28,6 @@ const dictate = () => {
   
       const speechToText = event.results[0][0].transcript;
       voiceMessage.innerHTML = '"'+speechToText+'"'
-      
-      alert(speechToText)
 
       // element params
       var color = '';
