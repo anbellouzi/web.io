@@ -19,9 +19,6 @@ function setElementDic(components) {
 }
 
 function showAllComponents() {
-    // document.getElementById("show-components").classList.remove("hide");
-    // document.getElementById("show-components").classList.add("show");
-
     var ul = document.getElementById("components-list");
 
     
