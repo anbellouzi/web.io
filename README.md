@@ -40,15 +40,12 @@
 
 ## Authors
 
-| [![Anas](https://avatars0.githubusercontent.com/u/12688642?v=4)](https://github.com/anbellouzi) 	          |
-|:---------------------------------------------------------------------------------------------------------:	|
-|                                            **Anas Bellouzi**                                            	  |
-| [![VN](https://avatars0.githubusercontent.com/u/37787869?v=4)](https://github.com/vladyslavnUA) 	          |
-|:---------------------------------------------------------------------------------------------------------:	|
-|                                            **Vladyslav Nykoliuk**                                           |
-| [![Abdullah](https://avatars2.githubusercontent.com/u/51065314?v=4)](https://github.com/AbdullahNoori) 	    |
-|:---------------------------------------------------------------------------------------------------------:	|
-|                                            **Abdullah Noori**                                            	  |
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/anbellouzi"><img src="https://avatars0.githubusercontent.com/u/12688642?v=4" alt="Anas Bellouzi" width="85px;"/><br><sub><b>Anas Bellouzi</b></td>
+    <td align="center"><a href="https://github.com/vladyslavnUA"><img src="https://avatars0.githubusercontent.com/u/37787869?v=4" alt="Vladyslav Nykoliuk" width="85px;"/><br><sub><b>Vladyslav Nykoliuk</b></td>
+    <td align="center"><a href="https://github.com/AbdullahNoori"><img src="https://avatars2.githubusercontent.com/u/51065314?v=4" alt="Abdullah Noori" width="85px;"/><br><sub><b>Abdullah Noori</b></td>
+  </tr>
 
 ## Support
 
