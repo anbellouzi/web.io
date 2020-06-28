@@ -35,6 +35,8 @@
 
 ## About
 
+- Visit our site, currently ![Live](https://anbellouzi.github.io/web.io/)
+
 ## Features
 
 ## Contributing
@@ -55,5 +57,4 @@ Reach out to any of the developers (authors) for support of this project.
 
 ## License
 
-
-live link: https://anbellouzi.github.io/web.io/
+- Copyright © [Web.io 2020](https://anbellouzi.github.io/web.io/ "Web.io Live").
