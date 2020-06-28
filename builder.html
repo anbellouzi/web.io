@@ -38,7 +38,7 @@
     </style>
   </head>
   <body>
-    <div id="mydiv">
+    <div id="mydiv" class="first-popover">
         <div id="mydivheader"><img src="https://static.thenounproject.com/png/581820-200.png" width="20px" height="auto" alt=""></div>
         <div id="voice-box">
             <div class="text-box" contenteditable="true"></div>
@@ -48,7 +48,7 @@
             <br>
            
             <!-- shows list of all components  -->
-            <div class="btn-group float-left">
+            <div class="btn-group float-left" id="box-settings">
               <button type="button" class="btn btn-secondary  dropdown-toggle" onclick="showAllComponents()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-list" aria-hidden="true"></i>
                 </button>
@@ -62,7 +62,7 @@
             </div>
 
             <!-- shows voices  -->
-            <div class="btn-group float-left" style="margin-left: 13px;">
+            <div class="btn-group float-left" style="margin-left: 13px;" id="person-settings">
               <button type="button" class="btn btn-secondary  dropdown-toggle" onclick="showAllVoices()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </button>
@@ -80,7 +80,7 @@
             </div>
 
             <!-- adjust voices  -->
-            <div class="btn-group float-right">
+            <div class="btn-group float-right" id="voice-settings">
               <button type="button" class="btn btn-secondary  dropdown-toggle" onclick="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-gear" aria-hidden="true"></i>
               </button>
