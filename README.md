@@ -17,6 +17,9 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/anbellouzi/web.io?label=javascript)
 ![GitHub language count](https://img.shields.io/github/languages/count/anbellouzi/web.io)
 ![GitHub repo size](https://img.shields.io/github/repo-size/anbellouzi/web.io)
+<a href="source-of-payment">
+    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
+</a>
 ![GitHub forks](https://img.shields.io/github/forks/anbellouzi/web.io?style=social)
 ![GitHub stars](https://img.shields.io/github/stars/anbellouzi/web.io?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/anbellouzi/web.io?style=social)
@@ -35,7 +38,7 @@
 
 ## About
 
-- Visit our site, currently ![Live](https://anbellouzi.github.io/web.io/)
+- Visit our site, currently Live: @ https://anbellouzi.github.io/web.io/
 
 ## Features
 
