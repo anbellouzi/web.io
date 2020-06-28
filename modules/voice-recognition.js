@@ -1,4 +1,3 @@
-
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const synth = window.speechSynthesis;
 const recognition = new SpeechRecognition();
@@ -28,7 +27,7 @@ const dictate = () => {
   
       const speechToText = event.results[0][0].transcript;
       voiceMessage.innerHTML = '"'+speechToText+'"'
-  
+
       // element params
       var color = '';
       var functionName = '';
@@ -48,17 +47,22 @@ const dictate = () => {
         // check if there is function name
         else if (speechCommands[i].toLowerCase() in commandsDic) {
           functionName = commandsDic[speechCommands[i]]
+          
+          
+          
+          
           if (functionName == 'create') {
             var tempElement = speechCommands.slice(1, speechCommands.length).join(" ");
             if (tempElement.toLowerCase() in elementsDic) {
               elementName = tempElement
               break;
             }
-            else {
-
-            }
-
           }
+
+
+
+
+
         }
         // check if there is an element name
         else if (speechCommands[i].toLowerCase() in elementsDic) {
