@@ -88,7 +88,92 @@ console.log(wrapperChildren.models[0].attributes.type)
 // wrapperChildren.models[0].attributes.type
 
 
+// walkthrough code
+const introDriver = new Driver();
+//  driver.highlight('#mydiv')
+introDriver.defineSteps([
+ {
+   element: document.getElementById('mydiv'),
+   popover: {
+     className: 'first-popover',
+     title: 'Control Panel',
+     description: 'Welcome to your control panel! Here, you will have a chance to use the voice recognition feature to build your first website!',
+     position: 'right',
+     offset: 40,
+     closeBtnText: 'Close',
+     nextBtnText: 'Next',
+     prevBtnText: 'Previous',
+     keyboardControl: true
+   }
+ },
+ {
+  element: '#mic',
+  popover: {
+    title: 'The Microphone',
+    description: 'This is the main mic that you will use to build your site. Simple click on it, speak to it and it will do as you say.',
+    position: 'right',
+    offset: 20,
+    closeBtnText: 'Close',
+    nextBtnText: 'Next',
+    prevBtnText: 'Previous',
+    keyboardControl: true
+    }
+  },
+  {
+    element: '#box-settings',
+    popover: {
+      title: 'Components',
+      description: 'Sometimes you might not feel like talking to the computer, and that\'s okay, which is why we put all of them in this list. Simply click on the component and it will be added to your website. <br>\nIn addition, you can drag and drop from the components list to the right of your screen.',
+      position: 'bottom',
+      offset: 20,
+      closeBtnText: 'Close',
+      nextBtnText: 'Next',
+      prevBtnText: 'Previous',
+      keyboardControl: true
+    }
+  },
+  {
+    element: '#person-settings',
+    popover: {
+      title: 'Voice Settings',
+      description: 'Check out our Google Translate implementation.',
+      position: 'bottom',
+      // offset: 20,
+      closeBtnText: 'Close',
+      nextBtnText: 'Next',
+      prevBtnText: 'Previous',
+      keyboardControl: true
+    }
+  },
+  {
+    element: '#voice-settings',
+    popover: {
+      title: 'Voice Tone Settings',
+      description: 'With this tool, you can change the volume, pitch, and rate the website speaks back to you :)',
+      position: 'bottom',
+      // offset: 20,
+      closeBtnText: 'Close',
+      nextBtnText: 'Next',
+      prevBtnText: 'Previous',
+      keyboardControl: true
+    }
+  },
+  {
+    element: '#mydivheader',
+    popover: {
+      title: 'Draggable Box',
+      description: 'We made the control panel draggable, so it\'s easier for you to see your entire site :) Go ahead, try it...',
+      position: 'bottom',
+      // offset: 20,
+      closeBtnText: 'Close',
+      nextBtnText: 'Next',
+      prevBtnText: 'Previous',
+      keyboardControl: true
+    }
+  }
+]);
 
+introDriver.start();
 
 
 
