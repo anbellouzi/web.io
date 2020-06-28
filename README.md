@@ -40,6 +40,16 @@
 
 ## Authors
 
+| [![Anas](https://avatars0.githubusercontent.com/u/12688642?v=4)](https://github.com/anbellouzi) 	          |
+|:---------------------------------------------------------------------------------------------------------:	|
+|                                            **Anas Bellouzi**                                            	  |
+| [![VN](https://avatars0.githubusercontent.com/u/37787869?v=4)](https://github.com/vladyslavnUA) 	          |
+|:---------------------------------------------------------------------------------------------------------:	|
+|                                            **Vladyslav Nykoliuk**                                           |
+| [![Abdullah](https://avatars2.githubusercontent.com/u/51065314?v=4)](https://github.com/AbdullahNoori) 	    |
+|:---------------------------------------------------------------------------------------------------------:	|
+|                                            **Abdullah Noori**                                            	  |
+
 ## Support
 
 ## License
