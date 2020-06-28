@@ -5,7 +5,7 @@
 </h1>
 
 <h4 align="center">A website builder through voice-recognition.</h4>
-<br>
+
 <p align="center">
 
 ![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)
@@ -50,6 +50,8 @@
 </table>
 
 ## Support
+
+Reach out to any of the developers (authors) for support of this project.
 
 ## License
 
